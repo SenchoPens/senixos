@@ -1,55 +1,22 @@
 { pkgs, config, lib, inputs, ... }: {
-  home-manager.users.balsoft.home.packages = with pkgs;
+  home-manager.users.sencho.home.packages = with pkgs;
     [
-      # Internet
       wget
       curl
       unrar
-    ] ++ lib.optionals config.deviceSpecific.goodMachine ([
-      steamcmd
-      steam
-      haskellPackages.hoogle
-      nixfmt
-      niv
-      stdman
-      libqalculate
-      # Messaging
-      libnotify
-      # Audio/Video
-      vlc
-      cantata
-      lxqt.pavucontrol-qt
-      # Tools
-      zip
-      unrar
-      ksysguard
+      acpi
+      neovim
+      light
+      ydotool
+      xdotool
+
       wl-clipboard
+      termite
+      tdesktop
+      keepassxc
+      yadm
+
       grim
       slurp
-      abiword
-      gnumeric
-      gcalcli
-      breeze-icons
-      kde-cli-tools
-      xdg_utils
-      nheko
-      git-crypt
-      inputs.yt-utilities.defaultPackage.x86_64-linux
-      lambda-launcher
-      nix-patch
-      pass-wayland
-      papirus-icon-theme
-    ] ++ (with pkgs.kdeApplications; [
-      ark
-      dolphin
-      dolphin-plugins
-      gwenview
-      kcachegrind
-      kcolorchooser
-      kdenlive
-      kolourpaint
-      marble
-      okular
-      print-manager
-    ]));
+    ];
 }

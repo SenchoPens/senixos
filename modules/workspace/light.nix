@@ -9,11 +9,11 @@
       }) [
         {
           keys = [ 225 ];
-          command = "${pkgs.light}/bin/light -A 10";
+          command = "${pkgs.light}/bin/light -A 5";
         }
         {
           keys = [ 224 ];
-          command = "${pkgs.light}/bin/light -U 10";
+          command = "${pkgs.light}/bin/light -U 5";
         }
         {
           keys = [ 431 ];

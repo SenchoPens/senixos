@@ -15,13 +15,6 @@
       icon=
     fi
   fi
-  ${if config.device == "ASUS-Laptop" then ''
-    if [[ `cat /sys/devices/platform/asus-nb-wmi/als_enable` -eq 1 ]] 
-    then
-      icon=""
-    fi
-  '' else
-    ""}
   [[ -n $BLOCK_BUTTON ]] && text=" $LIGHT"
   echo "<span font='${iconfont}'>$icon</span>$text"
 ''

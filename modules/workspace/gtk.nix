@@ -45,7 +45,7 @@ in {
     };
   })];
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
-  home-manager.users.balsoft = {
+  home-manager.users.sencho = {
     gtk = {
       enable = true;
       iconTheme = {
@@ -57,7 +57,7 @@ in {
         package = pkgs.generated-gtk-theme;
       };
       font = {
-        name = "IBM Plex 12";
+        name = builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0;
       };
       gtk3.extraConfig.gtk-cursor-theme-name = "breeze";
     };

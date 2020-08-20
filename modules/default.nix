@@ -1,45 +1,26 @@
-device:
 { pkgs, lib, ... }: {
   imports = [
-    ./applications/packages.nix
-    ./applications/emacs
-    ./applications/konsole.nix
-    ./applications/sylpheed.nix
-    ./applications/weechat.nix
+    ./users.nix
+    ./themes.nix
+    ./devices.nix
+    ./services.nix
+    ./hardware.nix
+    ./packages.nix
+    ./applications.nix
+
     ./applications/okular.nix
-    ./applications/yt-utilities.nix
     ./applications/firefox.nix
+    ./applications/packages.nix
+
     ./workspace/sway
-    ./workspace/i3blocks
-    ./workspace/zsh.nix
     ./workspace/gtk.nix
+    ./workspace/kde.nix
+    ./workspace/i3blocks
     ./workspace/misc.nix
-    ./workspace/kde
-    ./workspace/ssh.nix
-    ./workspace/locale.nix
+    ./workspace/mako.nix
     ./workspace/fonts.nix
     ./workspace/light.nix
-    ./workspace/mako.nix
-    ./workspace/mopidy.nix
-    ./workspace/gcalcli.nix
-    ./workspace/rclone.nix
     ./workspace/xresources.nix
-    ./themes.nix
-    ./applications.nix
-    ./secrets.nix
-    ./devices.nix
-    ./packages.nix
-    ./users.nix
-    ./hardware.nix
-    ./services.nix
-    ./power.nix
-    ./network.nix
-  ] ++ lib.optionals (device == "AMD-Workstation") [
-    ./mailserver.nix
-    ./matrix-synapse.nix
-    ./workspace/kanshi.nix
-    ./openvpn.nix
-    ./nginx.nix
-    ./gitea.nix
+    
   ];
 }

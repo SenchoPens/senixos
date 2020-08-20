@@ -1,8 +1,7 @@
 { config, pkgs, lib, ... }: {
-  security.apparmor.enable = true;
-  programs.firejail.enable = true;
-  users.mutableUsers = false;
-  users.users.balsoft = {
+  users.mutableUsers = true;
+
+  users.users.sencho = {
     isNormalUser = true;
     extraGroups = [
       "sudo"
@@ -20,84 +19,82 @@
       "vboxusers"
       "wireshark"
     ];
-    description = "Александр Бантьев";
-    uid = 1000;
-    password = "";
+    description = "Arseniy Chekanov";
   };
 
   systemd.services."user@" = { serviceConfig = { Restart = "always"; }; };
 
-  home-manager.users.balsoft.home.activation.yubi = {
-    data =
-      "[ -s /home/balsoft/.config/Yubico/u2f_keys ] || (pamu2fcfg > /home/balsoft/.config/Yubico/u2f_keys)";
-    after = [ "linkGeneration" ];
-    before = [ ];
-  };
-
-  services.udev.extraRules = ''
-    ACTION=="remove", ATTRS{idVendor}=="1050", RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
-  '';
-  
-  services.mingetty.autologinUser = "balsoft";
+  # This will allow consoles to automatically log in as sencho
+  # services.mingetty.autologinUser = "sencho";
+  services.mingetty.helpLine = ''
+   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.  
+  /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ 
+  \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / 
+   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'  
+   ,-,-.                                                                                                                                                   ,-,-.
+  / (_o \                                                                                                                                                 /.( +.\
+  \ o ) /                                                             ::::.    ':::::     ::::'                                                           \ {. */
+   `-'-'                         /|  /|                               ':::::    ':::::.  ::::'                              |\  |\                         `-`-'
+   ,-,-.                         ||__||                                 :::::     '::::.:::::                               ||__||                         ,-,-.
+  /.( +.\                       /   O O\__                        .......:::::..... ::::::::                             __/O O   \                       / (_o \
+  \ {. */                      /          \                      ::::::::::::::::::. ::::::    ::::.                    /          \                      \ o ) /
+   `-`-'                      /      \     \                    ::::::::::::::::::::: :::::.  .::::'                   /     /      \                      `-'-'
+   ,-,-.                     /   _    \     \                          .....           ::::' :::::'                   /     /    _   \                     ,-,-.
+  / (_o \                   /    |\____\     \                        :::::            '::' :::::'                   /     /____/|    \                   /.( +.\
+  \ o ) /                  /     | | | |\____/               ........:::::               ' :::::::::::.              \____/| | | |     \                  \ {. */
+   `-'-'                  /       \| | | |/ |     __        :::::::::::::     welcome     :::::::::::::        __     | /| | | |/       \                  `-`-'
+   ,-,-.                 /  /  \   -------  |_____||         ::::::::::: ..              :::::                 ||_____|  -------   /  \  \                 ,-,-.
+  /.( +.\               /   |   |           |       --|          .::::: .:::            :::::               |--       |           |   |   \               / (_o \
+  \ {. */               |   |   |           |_____  --|         .:::::  :::::          '''''    .....       |--  _____|           |   |   |               \ o ) /
+   `-`-'                |  |_|_|_|          |     \----         :::::   ':::::.  ......:::::::::::::'       ----/     |          |_|_|_|  |                `-'-'
+   ,-,-.                /\                  |                    :::     ::::::. ':::::::::::::::::'                  |                  /\                ,-,-.
+  / (_o \              / /\        |        /                           .:::::::: '::::::::::                         \        |        /\ \              /.( +.\
+  \ o ) /             / /  |       |       |                           .::::''::::.     '::::.                         |       |       |  \ \             \ {. */
+   `-'-'          ___/ /   |       |       |                          .::::'   ::::.     '::::.                        |       |       |   \ \___          `-`-'
+   ,-,-.         |____/    c_c_c_C/ \C_c_c_c                         .::::      ::::      '::::.                       c_c_c_C/ \C_c_c_c    \____|         ,-,-.
+  /.( +.\                                                                                                                                                 / (_o \
+  \ {. */                                                                                                                                                 \ o ) /
+   `-`-'                                                                                                                                                   `-'-'
+   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.   ,-,-.  
+  /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ /.( +.\ / (_o \ 
+  \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / \ {. */ \ o ) / 
+   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'   `-`-'   `-'-'  
+  '';                                                                                        
   
   environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty? ]] && sudo /run/current-system/sw/bin/lock this 
     [[ "$(tty)" == /dev/tty1 ]] && sway
   '';
-
-  security.pam.u2f = {
-    control = "sufficient";
-    cue = true;
-    enable = true;
-  };
-
-  environment.systemPackages = [
-    (pkgs.writeShellScriptBin "lock" ''
-      if [[ "$1" == this ]]
-        then args="-s"
-        else args="-san"
-      fi
-      USER=balsoft ${pkgs.vlock}/bin/vlock "$args"
-    '')
-  ];
-
-  security.pam.services = builtins.listToAttrs (builtins.map (name: {
-    inherit name;
-    value = { unixAuth = false; };
-  }) [
-    "chpasswd"
-    "chsh"
-    "groupadd"
-    "groupdel"
-    "groupmems"
-    "groupmod"
-    "i3lock"
-    "i3lock-color"
-    "login"
-    "passwd"
-    "polkit-1"
-    "runuser"
-    "runuser-l"
-    "su"
-    "sudo"
-    "swaylock"
-    "systemd-user"
-    "useradd"
-    "userdel"
-    "usermod"
-    "vlock"
-    "xlock"
-    "xscreensaver"
-  ]);
+  console.colors = config.themes.colorList;
+  console.font = "Lat2-Terminus18"
+  # console.font = "cyr-sun16";
+  # console.keyMap = "ruwin_cplk-UTF-8";
 
   security.sudo = {
+    # Enable "sudo" command
     enable = true;
-    extraConfig = ''
-      balsoft ALL = (root) NOPASSWD: /run/current-system/sw/bin/lock
-      balsoft ALL = (root) NOPASSWD: /run/current-system/sw/bin/lock this
-      balsoft ALL = (root) NOPASSWD: ${pkgs.light}/bin/light -A 5
-      balsoft ALL = (root) NOPASSWD: ${pkgs.light}/bin/light -U 5
-    '';
+
+    # Enable running following commands as root without entering the password for user sencho
+    extraRules = let
+      nopasswd_command = command: { inherit command; options = [ "NOPASSWD" ]; };
+    in
+    [ 
+      { 
+        users = [ "sencho" ]; runAs = "root";
+        commands = map nopasswd_command [
+          "/run/current-system/sw/bin/lock"
+          "/run/current-system/sw/bin/lock this"
+          "${pkgs.light}/bin/light -A 5"
+          "${pkgs.light}/bin/light -U 5"
+
+          "${pkgs.ydotool}/bin/ydotoold"
+          "${pkgs.ydotool}/bin/ydotool click 1"
+          "${pkgs.ydotool}/bin/ydotool click 2"
+          "${pkgs.ydotool}/bin/ydotool click 3"
+        ];
+      } 
+    ];
   };
+
   home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
 }

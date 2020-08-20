@@ -1,9 +1,9 @@
 { pkgs, config, ...}:
 {
-  home-manager.users.balsoft.programs.mako = {
+  home-manager.users.sencho.programs.mako = {
     enable = true;
     layer = "overlay";
-    font = "IBM Plex 13";
+    font = builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0;
     width = 500;
     height = 80;
     defaultTimeout = 10000;

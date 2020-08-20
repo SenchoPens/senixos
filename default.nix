@@ -1,6 +1,6 @@
-# This is balsoft's configuration file.
+# This is Sencho Pens's configuration file.
 #
-# https://github.com/balsoft/nixos-config
+# https://github.com/SenchoPens/nixos-config
 #
 # This is main nixos configuration
 # To use this configuration:
@@ -13,11 +13,63 @@
 rec {
   imports = [
     (./hardware-configuration + "/${name}.nix")
+
     inputs.home-manager.nixosModules.home-manager
-    (import ./modules device)
+
+    (import ./modules)
   ];
 
-  device = name;
+  device = name + "-Laptop";  # ToDo: do this adequately
+ 
+  system.stateVersion = "20.03";
 
-  system.stateVersion = "18.03";
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = name; # Define your hostname.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  
+  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+  # Per-interface useDHCP will be mandatory in the future, so this generated config
+  # replicates the default behaviour.
+  networking.useDHCP = false;
+  networking.interfaces.enp1s0.useDHCP = true;
+  networking.interfaces.wlp2s0.useDHCP = true;
+
+  # Set your time zone.
+  time.timeZone = "Europe/Moscow";
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  environment.sessionVariables = {
+    XKB_DEFAULT_LAYOUT = "us,ru";
+    XKB_DEFAULT_OPTIONS = "grp:rshift_toggle,grp_led:caps,caps:ctrl_modifier";
+    LANG = lib.mkForce "en_GB.UTF-8";
+  };
+
+  #services.xserver = {
+    #extraLayouts = {
+      #sencho = {
+        #description = "my xkb layout";
+        #languages = [ "rus" "eng" ];
+        #symbolsFile = ./sencho_xkb;
+      #};
+    #};
+
+    #layout = "sencho";
+    #xkbOptions = "grp:rshift_toggle,grp_led:caps,caps:ctrl_modifier";
+  #};
+
+  home-manager.users.sencho.home.language = let
+    en = "en_GB.UTF-8";
+    ru = "ru_RU.UTF-8";
+  in {
+    address = ru;
+    monetary = ru;
+    paper = ru;
+    time = en;
+    base = en;
+  };
 }
