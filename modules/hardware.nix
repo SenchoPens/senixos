@@ -42,11 +42,21 @@ with deviceSpecific; {
       # graphics
       "modeset"
 
+      # faster boot (see https://security.stackexchange.com/questions/42164/rdrand-from-dev-random)
+      "random.trust_cpu=on"
+
       # Turn off meltdown and spectre mitigations for performance reasons
       # yeah, if you wanna hack my computer, you know what to use
       "pti=off"
       "spectre_v2=off"
     ];
+  };
+
+  environment.etc."mkinitcpio.conf" = {
+      enable = true;
+      text = ''
+        COMPRESSION=”lz4″
+      '';
   };
 
   services.logind.lidSwitch = "suspend";

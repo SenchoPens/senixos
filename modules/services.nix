@@ -23,5 +23,11 @@
   # provides power management to some applications and automatically shuts down if battery <2%
   services.upower.enable = true;
 
+  #systemd.services.dhcpcd.scriptArgs = "-b -q %I";
+  networking.dhcpcd.enable = false;  # not needed when using NetworkManager
+
+  systemd.services.NetworkManager-wait-online.enable = false;  # slows boot by 6-9s
+
   virtualisation.docker.enable = config.deviceSpecific.isHost;
+  virtualisation.docker.enableOnBoot = false;  # slows boot by 2s
 }
