@@ -1,6 +1,6 @@
 { pkgs, config, lib, inputs, ... }:
 let
-  thm = config.themes.colors;
+  thm = config.themes.light.colors;
   thm' = builtins.mapAttrs (name: value: builtins.substring 1 7 value) thm;
   materia_colors = pkgs.writeTextFile {
     name = "gtk-generated-colors";

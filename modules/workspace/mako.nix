@@ -8,9 +8,9 @@
     height = 80;
     defaultTimeout = 10000;
     maxVisible = 10;
-    backgroundColor = config.themes.colors.bg;
-    textColor = config.themes.colors.fg;
-    borderColor = config.themes.colors.blue;
-    progressColor = "over ${config.themes.colors.green}";
+    backgroundColor = config.themes.light.colors.bg;
+    textColor = config.themes.light.colors.fg;
+    borderColor = config.themes.light.colors.blue;
+    progressColor = "over ${config.themes.light.colors.green}";
   };
 }

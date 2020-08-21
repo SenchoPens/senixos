@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  thm = config.themes.colors;
+  thm = config.themes.dark.colors;
 
   apps = config.defaultApplications;
 
@@ -117,7 +117,7 @@ in {
           in {
             background = thm.dark;
             statusline = thm.fg;
-            separator = thm.green;
+            separator = thm.light_fg;
             focusedWorkspace = default // { text = thm.purple; };
             activeWorkspace = default // { text = thm.fg; };
             inactiveWorkspace = default // { text = thm.fg; };

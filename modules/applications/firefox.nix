@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 with import ../../support.nix { inherit lib config; };
-let thm = config.themes.colors;
+let thm = config.themes.light.colors;
 in {
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";

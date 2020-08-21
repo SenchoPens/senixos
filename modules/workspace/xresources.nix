@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   home-manager.users.sencho = {
-    xresources.properties = with config.themes.colors; {
+    xresources.properties = with config.themes.light.colors; {
       "*background" = bg;
       "*foreground" = fg;
       "*color0" = dark;
