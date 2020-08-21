@@ -33,7 +33,8 @@ let
         cyan = base0C;
         blue = base0D;
         purple = base0E;
-        dark_orange = base0F
+        dark_orange = base0F;
+      };
     };
 
   fromYAML = yaml:
@@ -49,7 +50,7 @@ in {
         description =
           "List of base16 colors in order 00, 01, ..., 0F";
         type = types.listOf colorType;
-      }
+      };
       colors = mkOption {
         description =
           "Set of colors from which the themes for various applications will be generated";
@@ -88,6 +89,6 @@ in {
         fromYAML (
           builtins.readFile "${inputs.base16-summerfruit-scheme}/summerfruit-light.yaml"
         )
-      )
+      );
   };
 }

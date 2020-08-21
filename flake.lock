@@ -1,18 +1,18 @@
 {
   "nodes": {
-    "base16-unclaimed-schemes": {
+    "base16-summerfruit-scheme": {
       "flake": false,
       "locked": {
-        "lastModified": 1527170198,
-        "narHash": "sha256-YV2tgexpyeLqm6d8WaBwT9QPAHT/gxhiFpxQq03xdhA=",
-        "owner": "chriskempson",
-        "repo": "base16-unclaimed-schemes",
-        "rev": "d6b93456dc1012628faec572387814f59e0b854a",
+        "lastModified": 1471208641,
+        "narHash": "sha256-wEeWCW04I1pCcWc3CQzELTKmc8DbjXgblQJHBnOFukk=",
+        "owner": "cscorley",
+        "repo": "base16-summerfruit-scheme",
+        "rev": "f90e53358fd0d6ba1526bd790f26b0195b6debf7",
         "type": "github"
       },
       "original": {
-        "owner": "chriskempson",
-        "repo": "base16-unclaimed-schemes",
+        "owner": "cscorley",
+        "repo": "base16-summerfruit-scheme",
         "type": "github"
       }
     },
@@ -35,6 +35,22 @@
         "type": "github"
       }
     },
+    "materia-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1596129804,
+        "narHash": "sha256-Vtyja8A6SfeRA78XK1e89hwWYY0kQm1VkY7/EagDXl8=",
+        "owner": "nana-4",
+        "repo": "materia-theme",
+        "rev": "6f7e51a97fc7ff3ddbb7908cff505a8c1919b6a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nana-4",
+        "repo": "materia-theme",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -50,6 +66,22 @@
       "original": {
         "id": "nix",
         "type": "indirect"
+      }
+    },
+    "nixkgs": {
+      "locked": {
+        "lastModified": 1597957938,
+        "narHash": "sha256-fpSPFQKhCyXKc3UmsjZewxxSytSeiz+T4mku1r/M0DQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "16f18c37ed15df7414018f23fa48d398767aef74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "16f18c37ed15df7414018f23fa48d398767aef74",
+        "type": "github"
       }
     },
     "nixpkgs": {
@@ -113,9 +145,11 @@
     },
     "root": {
       "inputs": {
-        "base16-unclaimed-schemes": "base16-unclaimed-schemes",
+        "base16-summerfruit-scheme": "base16-summerfruit-scheme",
         "home-manager": "home-manager",
+        "materia-theme": "materia-theme",
         "nix": "nix",
+        "nixkgs": "nixkgs",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-wayland": "nixpkgs-wayland"
       }

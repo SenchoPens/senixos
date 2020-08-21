@@ -7,7 +7,7 @@ let
   lock_fork = pkgs.writeShellScript "lock_fork" "sudo /run/current-system/sw/bin/lock &";
   lock = pkgs.writeShellScript "lock" "swaymsg 'output * dpms off'; sudo /run/current-system/sw/bin/lock; swaymsg 'output * dpms on'";
 
-  workspaces = [ "10:  " "1:    " "2:  " "3:  " "4:  " "5:  " "6: {}" "7:  " "8:  " "9:  " ];
+  workspaces = map (x: x + "") [ "10:  " "1:  " "2:  " "3:  " "4:  " "5:  " "6: {}" "7:  " "8:  " "9:  " ];
 
   get_ws = n: builtins.elemAt workspaces n;
   get_ws_n = with lib; with builtins;
@@ -33,6 +33,8 @@ in {
 
       fonts = defaultFonts.monospace;
 
+      terminal="${pkgs.alacritty}/bin/alacritty";
+
       input = {
         "*" = { 
           xkb_layout = "us,ru"; 
@@ -43,7 +45,7 @@ in {
       assigns = let 
         wsAssigns = [
           [  ]
-          [ { class = "Firefox"; } { class = "qutebrowser"; } { class = "Tor Browser"; } ]
+          [ { app_id = "firefox"; } { class = "qutebrowser"; } { class = "Tor Browser"; } ]
           [  ]
           [  ]
           [ { class = "jetbrains-pycharm-ce"; } ]
@@ -56,12 +58,12 @@ in {
       in lib.genAttrs workspaces (ws: builtins.elemAt wsAssigns (get_ws_n ws));
 
       colors = rec {
-        background = thm.bg;
+        background = thm.dark;
 
         unfocused = {
-          text = thm.dark;
+          text = thm.light_fg;
           border = thm.dark;
-          background = thm.bg;
+          background = thm.dark;
           childBorder = thm.dark;
           indicator = thm.fg;
         };
@@ -76,13 +78,13 @@ in {
         focused = unfocused // {
           childBorder = thm.gray;
           border = thm.gray;
-          background = thm.dark;
+          background = thm.gray;
           text = thm.fg;
         };
       };
 
       gaps = {
-        inner = 6;
+        inner = 20;
         smartGaps = true;
         smartBorders = "on";
       };
@@ -109,15 +111,15 @@ in {
 
           colors = let
             default = {
-              background = thm.bg;
-              border = thm.bg;
+              background = thm.dark;
+              border = thm.dark;
             };
           in {
-            background = thm.bg;
+            background = thm.dark;
             statusline = thm.fg;
-            separator = thm.alt;
-            focusedWorkspace = default // { text = thm.red; };
-            activeWorkspace = default // { text = thm.green; };
+            separator = thm.green;
+            focusedWorkspace = default // { text = thm.purple; };
+            activeWorkspace = default // { text = thm.fg; };
             inactiveWorkspace = default // { text = thm.fg; };
             urgentWorkspace = default // { text = thm.orange; };
             bindingMode = default // { text = thm.yellow; };
@@ -130,13 +132,15 @@ in {
           fonts = defaultFonts.monospace;
           mode = "dock";
           position = "bottom";
-          workspaceNumbers = false;
+
+          workspaceNumbers = true;
 
           extraConfig = ''
             separator_symbol "  "
           '';
-          #separator_symbol "  "
-          #separator_symbol " "
+            #workspace_min_width = 100;
+            #separator_symbol "  "
+            #separator_symbol " "
         }
       ];
 
@@ -177,13 +181,14 @@ in {
         "${modifier}+Shift+f" = "floating toggle";
 
         "${modifier}+Print" = script "screenshot"
-          "${pkgs.grim}/bin/grim Pictures/$(date +'%Y-%m-%d+%H:%M:%S').png";
+          "${pkgs.grim}/bin/grim Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png";
 
         "${modifier}+Control+Print" = script "screenshot-copy"
           "${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy";
 
         "--release ${modifier}+Shift+Print" = script "screenshot-area" ''
-          ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" Pictures/$(date +'%Y-%m-%d+%H:%M:%S').png'';
+          ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png
+        '';
 
         "--release ${modifier}+Control+Shift+Print" =
           script "screenshot-area-copy" ''
@@ -209,7 +214,6 @@ in {
 
         "button2" = "kill";
         "--whole-window ${modifier}+button2" = "kill";
-
       } 
 
       // builtins.listToAttrs (builtins.map (x: {
@@ -236,7 +240,6 @@ in {
 
     extraConfig = ''
       default_border pixel 1
-      mouse_warping container
       hide_edge_borders --i3 smart
       exec pkill swaynag
     '';

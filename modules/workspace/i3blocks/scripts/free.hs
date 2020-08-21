@@ -6,5 +6,5 @@ main = do
                 <$> (!!1) <$> words
                 <$> (!!2) <$> lines
                 <$> readFile "/proc/meminfo"
-  putStrLn $ (take 5 $ show $ freeMemory / 1000000) ++ "GB"
-  exitWith $ if freeMemory > 500000 then ExitSuccess else ExitFailure 33
+  putStrLn $ (take 3 $ show $ freeMemory / (2 ^ 30)) ++ "Gb"
+  exitWith $ if freeMemory > (2 ^ 30) then ExitSuccess else ExitFailure 33

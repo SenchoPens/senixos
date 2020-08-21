@@ -23,12 +23,9 @@ rec {
  
   system.stateVersion = "20.03";
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = name; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
   
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -39,6 +36,7 @@ rec {
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;

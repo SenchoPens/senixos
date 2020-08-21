@@ -9,24 +9,23 @@
   then
     volume=""
     end=""
-    icon=""
+    icon="婢"
   else
     volume=`${pamixer}/bin/pamixer --get-volume`
     end="%"
     if [[ $volume -lt 33 ]]
     then
-      icon=""
+      icon="奄"
     else
       if [[ $volume -lt 66 ]]
       then
-        icon=""
+        icon="奔"
       else
-        icon=""
-        code=33
+        icon="墳"
       fi
     fi
   fi
-  [[ -n $BLOCK_BUTTON ]] && text=" $volume$end"
+  text=" $volume$end"
   echo "<span font='${iconfont}'>$icon</span>$text"
   exit $code
 ''

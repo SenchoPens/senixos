@@ -21,8 +21,6 @@ with lib;
       [ ]
       ++ [
         (scrint "weather" 600) 
-        (scr "calendar") 
-        (scrint "music" 10)
         (scrint "sound" 5)
         (scrint "cpu" 5)
         (scrint "freq" 10)
@@ -33,8 +31,7 @@ with lib;
         (scr "date")
         (scrint "time" 1)
       ] 
-      #ToDo: ++ optionals config.deviceSpecific.isLaptop [
-      ++ [
+      ++ optionals config.deviceSpecific.isLaptop [
         (scr "battery")
         (scrint "brightness" 5)
       ]

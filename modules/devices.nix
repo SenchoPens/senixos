@@ -17,6 +17,8 @@ with types; {
 
       cpu = devInfo.cpu.vendor;
       inherit devInfo;
+
+      isHost = isLaptop;
     };
 
     devices = {

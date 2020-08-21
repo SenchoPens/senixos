@@ -2,6 +2,8 @@
   description = "Nixos config by Sencho Pens, stolen from balsoft/nixos-config";
 
   inputs = {
+    nixkgs.url = github:nixos/nixpkgs/16f18c37ed15df7414018f23fa48d398767aef74;
+
     home-manager = {
       type = "github";
       owner = "rycee";
@@ -18,6 +20,11 @@
       type = "github";
       owner = "colemickens";
       repo = "nixpkgs-wayland";
+      flake = false;
+    };
+
+    materia-theme = {
+      url = github:nana-4/materia-theme;
       flake = false;
     };
   };

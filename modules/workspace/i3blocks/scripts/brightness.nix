@@ -1,5 +1,6 @@
 { iconfont, light, config, ... }: ''
   case $BLOCK_BUTTON in
+       # scrolling
        4) sudo ${light}/bin/light -A 5;;
        5) sudo ${light}/bin/light -U 5;;
   esac

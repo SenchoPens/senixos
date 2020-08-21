@@ -6,15 +6,15 @@
       unrar
       acpi
       neovim
-      light
       ydotool
-      xdotool
+      light
 
       wl-clipboard
       termite
       tdesktop
       keepassxc
       yadm
+      networkmanagerapplet
 
       grim
       slurp
