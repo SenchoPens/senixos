@@ -118,7 +118,7 @@ in {
             background = thm.dark;
             statusline = thm.fg;
             separator = thm.light_fg;
-            focusedWorkspace = default // { text = thm.red; };
+            focusedWorkspace = default // { text = thm.green; };
             activeWorkspace = default // { text = thm.fg; };
             inactiveWorkspace = default // { text = thm.fg; };
             urgentWorkspace = default // { text = thm.orange; };
@@ -176,6 +176,11 @@ in {
         "${modifier}+Shift+l" = "focus child; focus right";
         "${modifier}+Shift+k" = "focus child; focus up";
         "${modifier}+Shift+j" = "focus child; focus down";
+
+        "${modifier}+Left" = "focus child; focus left";
+        "${modifier}+Right" = "focus child; focus right";
+        "${modifier}+Up" = "focus child; focus up";
+        "${modifier}+Down" = "focus child; focus down";
 
         "${modifier}+Shift+Ctrl+h" = "move left";
         "${modifier}+Shift+Ctrl+l" = "move right";
