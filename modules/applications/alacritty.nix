@@ -1,12 +1,16 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, lib, ... }:
+let thm = config.themes.dark.colors;
+in {
   home-manager.users.sencho.programs.alacritty = {
     enable = true;
     settings = {
       draw_bold_text_with_bright_colors = true;
 
-      font = {
-        size = 9;
+      font = with builtins; let
+        splitted = split "([0-9]+)" (elemAt config.fonts.fontconfig.defaultFonts.monospace 0);
+      in {
+        font = elemAt splitted 0;
+        size = lib.strings.toInt (elemAt (elemAt splitted 1) 0);
         bold = { style = "Bold"; };
       };
 
@@ -14,35 +18,25 @@
         x = 2;
         y = 2;
       };
+      
+      shell.program = "${pkgs.zsh}/bin/zsh";
+
+      # cursor.style = "Beam";
 
       colors = {
         primary = {
-          background = "0xfafafa";
-          foreground = "0x383a42";
+          background = thm.dark;
+          foreground = thm.fg;
         };
         cursor = {
-          text = "0xfafafa";
-          cursor = "0x383a42";
+          text = thm.alt;
+          cursor = thm.fg;
         };
         normal = {
-          black = "0xfafafa";
-          red = "0xca1243";
-          green = "0x50a14f";
-          yellow = "0xc18401";
-          blue = "0x4078f2";
-          magenta = "0xa626a4";
-          cyan = "0x0184bc";
-          white = "0x383a42";
-        };
-        bright = {
-          black = "0xa0a1a7";
-          red = "0xca1243";
-          green = "0x50a14f";
-          yellow = "0xc18401";
-          blue = "0x4078f2";
-          magenta = "0xa626a4";
-          cyan = "0x0184bc";
-          white = "0x090a0b";
+          black = thm.bg;
+          inherit (thm) red green yellow blue cyan;
+          magenta = thm.purple;
+          white = thm.fg;
         };
       };
     };

@@ -3,18 +3,25 @@ let
   filterGit =
     builtins.filterSource (type: name: name != ".git" || type != "directory");
   system = "x86_64-linux";
-  old = import inputs.nixpkgs-old ({
-    config = config.nixpkgs.config;
-    localSystem = { inherit system; };
-  });
+
 in {
+  nixpkgs.overlays = [
+    inputs.nix.overlay
+  ] ++ [
+    (import ../overlays/overlay_1.nix)
+  ];
+
   nixpkgs.config = {
     allowUnfree = true;
   };
+
   environment.etc.nixpkgs.source = inputs.nixpkgs;
+
   nix = rec {
-    nixPath = lib.mkForce [
+    nixPath = [
       "nixpkgs=/etc/nixpkgs"
+      "nixpkgs-overlays=/etc/nixos/overlays"
+      #"nixpkgs-overlays=/etc/nixos/modules/overlays-compat"  # does not work, most likely because of flakes.
     ];
 
     binaryCaches = [ "https://cache.nixos.org" ];

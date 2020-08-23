@@ -7,8 +7,8 @@ with import ../support.nix { inherit lib config; }; {
   config = rec {
     defaultApplications = {
       term = {
-        cmd = "${pkgs.termite}/bin/termite";
-        desktop = "termite";
+        cmd = "${pkgs.alacritty}/bin/alacritty";
+        desktop = "alacritty";
       };
       editor = {
         cmd = "${pkgs.neovim}/bin/nvim";

@@ -6,17 +6,18 @@
       unrar
       acpi
       neovim
-      ydotool
       light
+      yadm
+
+      fzf
+      zsh-powerlevel10k
 
       wl-clipboard
-      termite
+      grim
+      ydotool
+      slurp
+
       tdesktop
       keepassxc
-      yadm
-      networkmanagerapplet
-
-      grim
-      slurp
     ];
 }

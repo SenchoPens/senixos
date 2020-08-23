@@ -1,6 +1,11 @@
 { config, lib, pkgs, inputs, ... }:
 with lib;
 let
+
+  # http://chriskempson.com/projects/base16/
+  # https://github.com/cscorley/base16-summerfruit-scheme/blob/master/preview-light.png
+  # https://github.com/cscorley/base16-summerfruit-scheme/blob/master/preview-dark.png
+
   colorType = types.str;
 
   color = (name:
@@ -8,9 +13,6 @@ let
       description = "${name} color of palette";
       type = colorType;
     }));
-
-  # http://chriskempson.com/projects/base16/
-  # https://github.com/cscorley/base16-summerfruit-scheme/blob/master/preview-light.png
   fromBase16 = { base00, base01, base02, base03, base04, base05, base06, base07
     , base08, base09, base0A, base0B, base0C, base0D, base0E, base0F, ... }:
     rec {

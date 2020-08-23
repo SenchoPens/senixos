@@ -14,6 +14,7 @@
     ./applications/alacritty.nix
 
     ./workspace/sway
+    ./workspace/zsh
     ./workspace/gtk.nix
     #./workspace/kde.nix
     ./workspace/i3blocks

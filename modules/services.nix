@@ -2,6 +2,7 @@
 
   services.acpid.enable = true;
 
+  # kill the most RAM-eating app if RAM is 95% full and swap 10% full
   services.earlyoom = {
     enable = config.devices.${config.device}.ram < 16;
     freeMemThreshold = 5;
@@ -20,10 +21,11 @@
 
   systemd.services.systemd-udev-settle.enable = false;
 
+  services.tlp.enable = true;  # must increase battery life
+
   # provides power management to some applications and automatically shuts down if battery <2%
   services.upower.enable = true;
 
-  #systemd.services.dhcpcd.scriptArgs = "-b -q %I";
   networking.dhcpcd.enable = false;  # not needed when using NetworkManager
 
   systemd.services.NetworkManager-wait-online.enable = false;  # slows boot by 6-9s

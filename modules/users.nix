@@ -47,17 +47,18 @@
     [ 
       { 
         users = [ "sencho" ]; runAs = "root";
-        commands = map nopasswd_command [
+        commands = map nopasswd_command ([
           "/run/current-system/sw/bin/lock"
           "/run/current-system/sw/bin/lock this"
           "${pkgs.light}/bin/light -A 5"
           "${pkgs.light}/bin/light -U 5"
 
           "${pkgs.ydotool}/bin/ydotoold"
-          "${pkgs.ydotool}/bin/ydotool click 1"
-          "${pkgs.ydotool}/bin/ydotool click 2"
-          "${pkgs.ydotool}/bin/ydotool click 3"
-        ];
+        ]
+        ++
+        (map (x: "${pkgs.ydotool}/bin/ydotool ${x}") [
+          "key --down Alt" "key --up Alt" "click 1" "click 2" "click 3" "key left" "key right" "key up" "key down"
+        ]));
       } 
     ];
   };

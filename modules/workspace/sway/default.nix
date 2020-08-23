@@ -118,7 +118,7 @@ in {
             background = thm.dark;
             statusline = thm.fg;
             separator = thm.light_fg;
-            focusedWorkspace = default // { text = thm.purple; };
+            focusedWorkspace = default // { text = thm.red; };
             activeWorkspace = default // { text = thm.fg; };
             inactiveWorkspace = default // { text = thm.fg; };
             urgentWorkspace = default // { text = thm.orange; };
@@ -155,26 +155,32 @@ in {
         wsKeys = (builtins.genList (x: [ (toString x) (get_ws x) ]) 10);
 
         xdotool_click_n = n: ''exec "sh -c 'eval `${pkgs.xdotool}/bin/xdotool getactivewindow click --clearmodifiers ${builtins.toString(n)}`'"'';
-        ydotool_click_n = n: ''exec sudo ${pkgs.ydotool}/bin/ydotool click ${builtins.toString(n)}'';
+        ydotool = "sudo ${pkgs.ydotool}/bin/ydotool";
+        ydotool_do_alt = action: "${ydotool} key --up Alt && ${ydotool} ${action} && ${ydotool} key --down Alt";
 
       in ({
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Return" = "exec ${apps.term.cmd}";
         "${modifier}+o" = "layout toggle all";
 
-        "${modifier}+q" = ydotool_click_n 1;  # left
-        "${modifier}+e" = ydotool_click_n 2;  # rigth
-        "${modifier}+w" = ydotool_click_n 3;  # middle
+        "${modifier}+q" = ydotool_do_alt "click 1";  # left
+        "${modifier}+e" = ydotool_do_alt "click 2";  # rigth
+        "${modifier}+w" = ydotool_do_alt "click 3";  # middle
 
-        "${modifier}+h" = "focus child; focus left";
-        "${modifier}+l" = "focus child; focus right";
-        "${modifier}+k" = "focus child; focus up";
-        "${modifier}+j" = "focus child; focus down";
+        "${modifier}+h" = ydotool_do_alt "key left";
+        "${modifier}+l" = ydotool_do_alt "key right";
+        "${modifier}+k" = ydotool_do_alt "key up";
+        "${modifier}+j" = ydotool_do_alt "key down";
 
-        "${modifier}+Shift+h" = "move left";
-        "${modifier}+Shift+l" = "move right";
-        "${modifier}+Shift+k" = "move up";
-        "${modifier}+Shift+j" = "move down";
+        "${modifier}+Shift+h" = "focus child; focus left";
+        "${modifier}+Shift+l" = "focus child; focus right";
+        "${modifier}+Shift+k" = "focus child; focus up";
+        "${modifier}+Shift+j" = "focus child; focus down";
+
+        "${modifier}+Shift+Ctrl+h" = "move left";
+        "${modifier}+Shift+Ctrl+l" = "move right";
+        "${modifier}+Shift+Ctrl+k" = "move up";
+        "${modifier}+Shift+Ctrl+j" = "move down";
 
         "${modifier}+f" = "fullscreen toggle; floating toggle";
         "${modifier}+r" = "mode resize";
