@@ -191,6 +191,8 @@ in {
         "${modifier}+r" = "mode resize";
         "${modifier}+Shift+f" = "floating toggle";
 
+        "${modifier}+d" = "exec ${pkgs.lambda-launcher}/bin/lambda-launcher";
+
         "${modifier}+Print" = script "screenshot"
           "${pkgs.grim}/bin/grim Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png";
 

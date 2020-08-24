@@ -4,6 +4,8 @@
   inputs = {
     nixkgs.url = github:nixos/nixpkgs/16f18c37ed15df7414018f23fa48d398767aef74;
 
+    lambda-launcher.url = github:SenchoPens/lambda-launcher;
+
     home-manager = {
       type = "github";
       owner = "rycee";

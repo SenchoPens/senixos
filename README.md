@@ -9,7 +9,7 @@ You can check out the structure of `./secret.nix` in `./modules/secrets.nix`
 * DM - mingetty (console login)
 * Terminal - Alacritty + zsh + powershell10k
 * Editor - neovim
-* Launcher - λauncher (modules/lambda-launcher, it's a git subtree)
+* Launcher - λauncher 
 
 ## Credits
 This configuration would not have been possible without original balsoft's

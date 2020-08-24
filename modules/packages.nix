@@ -7,6 +7,9 @@ let
 in {
   nixpkgs.overlays = [
     inputs.nix.overlay
+    (self: super: {
+      inherit (inputs.lambda-launcher.packages.x86_64-linux) lambda-launcher;
+    })
   ] ++ [
     (import ../overlays/overlay_1.nix)
   ];

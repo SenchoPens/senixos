@@ -35,6 +35,24 @@
         "type": "github"
       }
     },
+    "lambda-launcher": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1592763689,
+        "narHash": "sha256-qUA7qgDr9jgMVGM//OALAphpRb05u2tDxSEE0XLxumg=",
+        "owner": "SenchoPens",
+        "repo": "lambda-launcher",
+        "rev": "031fec7e39efe64bd08b58860d0868f8205c1fbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SenchoPens",
+        "repo": "lambda-launcher",
+        "type": "github"
+      }
+    },
     "materia-theme": {
       "flake": false,
       "locked": {
@@ -53,7 +71,7 @@
     },
     "nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1597654824,
@@ -116,6 +134,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1592754205,
+        "narHash": "sha256-CQzP4Ur/lNGKQQCQlA5E44rmJmZcAparDDHAus5evH4=",
+        "owner": "balsoft",
+        "repo": "nixpkgs",
+        "rev": "a50dd17125c2923e30ff06aeafdfee29b9be9ade",
+        "type": "github"
+      },
+      "original": {
+        "owner": "balsoft",
+        "ref": "fix-gi-gtk-declarative",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1591633336,
         "narHash": "sha256-oVXv4xAnDJB03LvZGbC72vSVlIbbJr8tpjEW5o/Fdek=",
         "owner": "NixOS",
@@ -129,7 +163,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1597668177,
         "narHash": "sha256-Fpz9gZhPmMk8nizBqBqecV9ZU6zHKpx/zXz+JyQQYA8=",
@@ -147,10 +181,11 @@
       "inputs": {
         "base16-summerfruit-scheme": "base16-summerfruit-scheme",
         "home-manager": "home-manager",
+        "lambda-launcher": "lambda-launcher",
         "materia-theme": "materia-theme",
         "nix": "nix",
         "nixkgs": "nixkgs",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-wayland": "nixpkgs-wayland"
       }
     }

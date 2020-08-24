@@ -16,6 +16,8 @@
       grim
       ydotool
       slurp
+      lambda-launcher
+      xdg_utils
 
       tdesktop
       keepassxc
