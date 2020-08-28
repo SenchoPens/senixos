@@ -19,8 +19,8 @@ with import ../support.nix { inherit lib config; }; {
         desktop = "firefox";
       };
       pdfViewer = {
-        cmd = "${pkgs.kdeApplications.okular}/bin/okular";
-        desktop = "org.kde.okular";
+        cmd = "${pkgs.evince}/bin/evince";
+        desktop = "org.gnome.Evince";
       };
     };
     home-manager.users.sencho.xdg.mimeApps = {
@@ -35,7 +35,7 @@ with import ../support.nix { inherit lib config; }; {
             "x-scheme-handler/https" = browser;
             "x-scheme-handler/about" = browser;
             "x-scheme-handler/unknown" = browser;
-            "image/*" = { desktop = "org.kde.gwenview"; };
+            "image/*" = { desktop = "gthumb"; };
             "application/pdf" = pdfViewer;
           };
     };

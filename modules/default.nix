@@ -8,7 +8,6 @@
     ./packages.nix
     ./applications.nix
 
-    ./applications/okular.nix
     ./applications/firefox.nix
     ./applications/packages.nix
     ./applications/alacritty.nix
@@ -17,7 +16,6 @@
     ./workspace/sway
     ./workspace/zsh
     ./workspace/gtk.nix
-    ./workspace/kde
     ./workspace/i3blocks
     ./workspace/misc.nix
     ./workspace/mako.nix
