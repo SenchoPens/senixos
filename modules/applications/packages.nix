@@ -18,8 +18,11 @@
       slurp
       lambda-launcher
       xdg_utils
+      libsForQt5.qtstyleplugins
 
       tdesktop
       keepassxc
+      libreoffice
+      kdeApplications.okular
     ];
 }

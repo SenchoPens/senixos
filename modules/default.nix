@@ -8,15 +8,16 @@
     ./packages.nix
     ./applications.nix
 
-    #./applications/okular.nix
+    ./applications/okular.nix
     ./applications/firefox.nix
     ./applications/packages.nix
     ./applications/alacritty.nix
+    ./applications/nvim
 
     ./workspace/sway
     ./workspace/zsh
     ./workspace/gtk.nix
-    #./workspace/kde.nix
+    ./workspace/kde
     ./workspace/i3blocks
     ./workspace/misc.nix
     ./workspace/mako.nix

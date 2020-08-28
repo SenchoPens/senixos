@@ -1,5 +1,7 @@
 { pkgs, lib, config, ... }:
-with import ../../../support.nix { inherit lib config; }; {
+let
+  thmDec = config.themes.dark.colorsDec;
+in with import ../../../support.nix { inherit lib config; }; {
   xdg.portal.enable = true;
   # services.flatpak.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
@@ -27,20 +29,19 @@ with import ../../../support.nix { inherit lib config; }; {
     pkgs.media-player-info
   ];
 
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   environment.sessionVariables = {
-    DESKTOP_SESSION = "kde";
+    #DESKTOP_SESSION = "kde";
     QT_XFT = "true";
     QT_SELECT = "5";
-    XDG_CURRENT_DESKTOP = "KDE";
+    #XDG_CURRENT_DESKTOP = "KDE";
     KDE_SESSION_VERSION = "5";
     QT_SCALE_FACTOR = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "0";
-    DE = "kde";
-    QT_QPA_PLATFORMTHEME = "kde";
+    #DE = "kde";
+    QT_QPA_PLATFORMTHEME = "gtk3";
     KDEDIRS = "/run/current-system/sw:/run/current-system/sw/share/kservices5:/run/current-system/sw/share/kservicetypes5:/run/current-system/sw/share/kxmlgui5";
   };
-  home-manager.users.balsoft.xdg.configFile."kdeglobals".text = genIni {
+  home-manager.users.sencho.xdg.configFile."kdeglobals".text = genIni {
     "Colors:Button" = {
       BackgroundAlternate = thmDec.dark;
       BackgroundNormal = thmDec.bg;
@@ -125,15 +126,15 @@ with import ../../../support.nix { inherit lib config; }; {
       ForegroundPositive = thmDec.green;
       ForegroundVisited = thmDec.gray;
     };
-    General = {
+    General = with config.fonts.defaultFont; let fs = toString serif.fontSize; in {
       ColorScheme = "Generated";
       Name = "Generated";
-      fixed = "IBM Plex Mono,11,-1,5,50,0,0,0,0,0";
-      font = "IBM Plex,11,-1,5,50,0,0,0,0,0";
-      menuFont = "IBM Plex,11,-1,5,50,0,0,0,0,0";
+      fixed = "${monospace.fontName},${fs},-1,5,50,0,0,0,0,0";
+      font = "${serif.fontName},${fs},-1,5,50,0,0,0,0,0";
+      menuFont = "${serif.fontName},${fs},-1,5,50,0,0,0,0,0";
       shadeSortColumn = true;
-      smallestReadableFont = "IBM Plex,8,-1,5,57,0,0,0,0,0,Medium";
-      toolBarFont = "IBM Plex,11,-1,5,50,0,0,0,0,0";
+      smallestReadableFont = "${serif.fontName},8,-1,5,57,0,0,0,0,0,Medium";
+      toolBarFont = "${serif.fontName},${fs},-1,5,50,0,0,0,0,0";
     };
     KDE = {
       DoubleClickInterval = 400;
@@ -147,7 +148,7 @@ with import ../../../support.nix { inherit lib config; }; {
     };
     Icons = { Theme = "Papirus-Dark"; };
   };
-  home-manager.users.balsoft.home.activation."user-places.xbel" = {
+  home-manager.users.sencho.home.activation."user-places.xbel" = {
     data = ''
       $DRY_RUN_CMD rm -f ~/.local/share/user-places.xbel
       $DRY_RUN_CMD cp ${./user-places.xbel} ~/.local/share/user-places.xbel
@@ -155,5 +156,9 @@ with import ../../../support.nix { inherit lib config; }; {
     '';
     before = [ ];
     after = [ "linkGeneration" ];
+  };
+  home-manager.users.sencho.qt = {
+    enable = true;
+    platformTheme = "gtk";
   };
 }

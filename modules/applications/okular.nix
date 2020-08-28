@@ -1,5 +1,7 @@
-{ pkgs, lib, config, ... }:
-with import ../../support.nix { inherit lib config; }; {
+{ pkgs, lib, config, inputs, ... }:
+let
+  thmDec = config.themes.dark.colorsDec;
+in with import ../../support.nix { inherit lib config; }; {
   home-manager.users.sencho.xdg.configFile."okularpartrc".text = genIni {
     "Dlg Accessibility" = {
       RecolorBackground = thmDec.bg;
