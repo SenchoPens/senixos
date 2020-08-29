@@ -1,6 +1,6 @@
 { pkgs, config, lib, inputs, ... }:
 let
-  thm = config.themes.light.colors;
+  thm = config.themes.dark.colors;
   thm' = builtins.mapAttrs (name: value: builtins.substring 1 7 value) thm;
   materia_colors = pkgs.writeTextFile {
     name = "gtk-generated-colors";
@@ -62,5 +62,8 @@ in {
       gtk3.extraConfig.gtk-cursor-theme-name = "breeze";
     };
     home.sessionVariables.GTK_THEME = "Generated";
+  };
+  environment.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "gtk2";
   };
 }

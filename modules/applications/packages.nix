@@ -9,6 +9,11 @@
       light
       yadm
 
+      gcc
+      cmake
+      gnumake
+      python3
+
       fzf
       zsh-powerlevel10k
 
@@ -18,11 +23,16 @@
       slurp
       lambda-launcher
       xdg_utils
+      libsForQt5.qtstyleplugins
 
       tdesktop
+      transmission-gtk
+      vlc
       keepassxc
       libreoffice
       evince
       gthumb
+      jetbrains.clion
+      jetbrains.pycharm-community
     ];
 }
