@@ -118,9 +118,9 @@ in {
             background = thm.dark;
             statusline = thm.fg;
             separator = thm.light_fg;
-            focusedWorkspace = default // { text = thm.green; };
+            focusedWorkspace = default // { text = thm.fg; };
             activeWorkspace = default // { text = thm.fg; };
-            inactiveWorkspace = default // { text = thm.fg; };
+            inactiveWorkspace = default // { text = thm.dark_fg; };
             urgentWorkspace = default // { text = thm.orange; };
             bindingMode = default // { text = thm.yellow; };
           };

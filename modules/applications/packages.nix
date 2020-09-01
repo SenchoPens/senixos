@@ -5,9 +5,8 @@
       curl
       unrar
       acpi
-      neovim
       light
-      yadm
+      htop
 
       gcc
       cmake
@@ -34,5 +33,6 @@
       gthumb
       jetbrains.clion
       jetbrains.pycharm-community
+      zoom-us
     ];
 }

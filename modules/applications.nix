@@ -23,6 +23,7 @@ with import ../support.nix { inherit lib config; }; {
         desktop = "org.gnome.Evince";
       };
     };
+    home-manager.users.sencho.xdg.configFile."mimeapps.list".force = true;
     home-manager.users.sencho.xdg.mimeApps = {
       enable = true;
       defaultApplications =

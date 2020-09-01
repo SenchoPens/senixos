@@ -11,10 +11,9 @@ map <C-L> <C-W>l
 map <C-I> <C-W>k
 map <C-M> <C-W>j
 tnoremap <ESC> <C-\><C-n>
-autocmd BufWinEnter,WinEnter term://* startinsert
-"autocmd BufLeave term://* stopinsert
 
-" GENERAL SETTINGS
+""""" GENERAL SETTINGS """""
+
 " This will enable the usage of your mouse inside Vim
 set mouse=a
 
@@ -23,7 +22,7 @@ set mouse=a
 "set lazyredraw
 
 " This will enable Vim's spell checking feature
-set spell spelllang=en,ru
+" set spell spelllang=en,ru
 
 " This will make Vim start searching the moment you start
 " typing the first letter of your search keyword
@@ -44,13 +43,8 @@ set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
 
-" Line numbers - absolute on cursor line and relative on other
-set relativenumber
+" Line numbers
 set number
-" This will highlight the current line your cursor is at
-set cursorline
-" This will highlight the current column your cursor is at
-set cursorcolumn
 
 " Autowrite on disk on buffer switching, exit, etc
 set autowrite
@@ -71,6 +65,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Language indentation settings
 autocmd FileType go setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+autocmd FileType nix setlocal tabstop=2 shiftwidth=2
 
 " Do not close the buffer when changing them
 set hid
@@ -79,6 +74,12 @@ set hid
 set wildmenu
 set wildmode=longest:list,full
 
-" C++
-" Path for searching for files, opened by 'gf' command (for headers)
-let &path.="src/include,/usr/include/AL,"
+""""" PLUGIN SETTINGS """""
+
+" Airline
+let g:airline_powerline_fonts=1
+let g:airline_section_z = '%{strftime("%c")}'
+let g:airline_theme = 'bubblegum'
+let g:airline_skip_empty_sections = 1
+
+let g:airline#extensions#tabline#enabled = 1

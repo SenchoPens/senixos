@@ -14,9 +14,8 @@ in {
     (import ../overlays/overlay_1.nix)
   ];
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config = import ./nixpkgs-config.nix;
+  home-manager.users.sencho.xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 
   environment.etc.nixpkgs.source = inputs.nixpkgs;
 
