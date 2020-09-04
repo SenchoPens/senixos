@@ -79,7 +79,7 @@ set wildmode=longest:list,full
 " Airline
 let g:airline_powerline_fonts=1
 let g:airline_section_z = '%{strftime("%c")}'
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'base16_nixos_airline_theme'
 let g:airline_skip_empty_sections = 1
 
 let g:airline#extensions#tabline#enabled = 1

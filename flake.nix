@@ -2,26 +2,14 @@
   description = "Nixos config by Sencho Pens, stolen from balsoft/nixos-config";
 
   inputs = {
-    nixkgs.url = github:nixos/nixpkgs/16f18c37ed15df7414018f23fa48d398767aef74;
-
+    nixkgs.url = github:nixos/nixpkgs/a092c1ece7469ff24ea5686306f4cb9adf76284b;
     lambda-launcher.url = github:SenchoPens/lambda-launcher;
-
-    home-manager = {
-      type = "github";
-      owner = "rycee";
-      repo = "home-manager";
-      ref = "bqv-flakes";
-    };
+    NUR.url = github:nix-community/NUR;
+    home-manager.url = github:rycee/home-manager;
+    nixpkgs-wayland.url = github:colemickens/nixpkgs-wayland;
 
     base16-summerfruit-scheme = {
       url = github:cscorley/base16-summerfruit-scheme;
-      flake = false;
-    };
-
-    nixpkgs-wayland = {
-      type = "github";
-      owner = "colemickens";
-      repo = "nixpkgs-wayland";
       flake = false;
     };
 
@@ -31,7 +19,7 @@
     };
   };
   
-  outputs = { nixpkgs, nix, self, ... } @ inputs: {
+  outputs = { nixpkgs, nix, nur, self, ... } @ inputs: {
     nixosConfigurations = with nixpkgs.lib;
       let
         hosts = map 
@@ -40,7 +28,10 @@
         mkHost = name:
          nixosSystem {
             system = "x86_64-linux";
-            modules = [ (import ./default.nix) ];
+            modules = [ 
+              (import ./default.nix) 
+              { nixpkgs.overlays = [ nur.overlay ]; }
+            ];
             specialArgs = {
               inherit inputs name;
             };

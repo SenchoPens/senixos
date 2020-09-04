@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "NUR": {
+      "locked": {
+        "lastModified": 1599170409,
+        "narHash": "sha256-5WUGrjkQdOv8Cs0IV0QBDHE3MU0I+Nefl+Z6By61k38=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "1233799aaf6641cb6362aedecfb2f9090f8e0e3d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "base16-summerfruit-scheme": {
       "flake": false,
       "locked": {
@@ -21,16 +36,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1591751635,
-        "narHash": "sha256-KgGtyFlkI/fsp+j8VEgJ/ynY9B91aX35Xp04HlDLRTo=",
+        "lastModified": 1599079041,
+        "narHash": "sha256-9YLk3xcnvCJMw7GUcEBtZjs8YYRd5K03lbi5yoRgaWg=",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "b3fee796fcd5531693d9b84ece76ad6836bb1cfa",
+        "rev": "e6e49ad73c7d8cbd9f6622f0a3330ce7b71c8a86",
         "type": "github"
       },
       "original": {
         "owner": "rycee",
-        "ref": "bqv-flakes",
         "repo": "home-manager",
         "type": "github"
       }
@@ -88,17 +102,17 @@
     },
     "nixkgs": {
       "locked": {
-        "lastModified": 1597957938,
-        "narHash": "sha256-fpSPFQKhCyXKc3UmsjZewxxSytSeiz+T4mku1r/M0DQ=",
+        "lastModified": 1598997501,
+        "narHash": "sha256-eF6JU3T+Kp+AGfEFbRuOJwX4UcA7XMU9Jbl20K88XYk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "16f18c37ed15df7414018f23fa48d398767aef74",
+        "rev": "a092c1ece7469ff24ea5686306f4cb9adf76284b",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "16f18c37ed15df7414018f23fa48d398767aef74",
+        "rev": "a092c1ece7469ff24ea5686306f4cb9adf76284b",
         "type": "github"
       }
     },
@@ -177,8 +191,23 @@
         "type": "indirect"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1599228682,
+        "narHash": "sha256-kCPgTG2TPfWB9JVjZBiMclRfgcZnvJ6u33HhOIcDx00=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "ed66479693bd46e9d4b1abffbf50e125736d03a5",
+        "type": "github"
+      },
+      "original": {
+        "id": "nur",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
+        "NUR": "NUR",
         "base16-summerfruit-scheme": "base16-summerfruit-scheme",
         "home-manager": "home-manager",
         "lambda-launcher": "lambda-launcher",
@@ -186,7 +215,8 @@
         "nix": "nix",
         "nixkgs": "nixkgs",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-wayland": "nixpkgs-wayland"
+        "nixpkgs-wayland": "nixpkgs-wayland",
+        "nur": "nur"
       }
     }
   },

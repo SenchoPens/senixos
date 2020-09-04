@@ -12,6 +12,7 @@
       cmake
       gnumake
       python3
+      nur.repos.balsoft.pkgs.nix-patch
 
       fzf
       zsh-powerlevel10k

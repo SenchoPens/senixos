@@ -16,8 +16,12 @@ let
   fromBase16 = { base00, base01, base02, base03, base04, base05, base06, base07
     , base08, base09, base0A, base0B, base0C, base0D, base0E, base0F, ... }:
     rec {
+      #ToDo: rename color*List -> colors*List?
+      #ToDo: rename colorList -> colorRawList
       colorList = [ base00 base01 base02 base03 base04 base05 base06 base07 base08 base09 base0A base0B base0C base0D base0E base0F ];
-      colors = builtins.mapAttrs (_: v: "#" + v) {
+      colorTermList = map (color: toString (((hex2int color) * 256) / 16777216)) colorList;
+
+      colorsRaw = {
         bg = base00;
         dark = base01;
 
@@ -39,6 +43,7 @@ let
         purple = base0E;
         dark_orange = base0F;
       };
+      colors = builtins.mapAttrs (_: v: "#" + v) colorsRaw;
       colorsDec = builtins.mapAttrs (name: color: colorHex2Dec color) colors;
     };
 
@@ -49,19 +54,18 @@ let
       buildPhase = "echo '${yaml}' | ${pkgs.yaml2json}/bin/yaml2json > $out";
     }));
 
-  splitHex = hexStr:
-    map (x: builtins.elemAt x 0) (builtins.filter (a: a != "" && a != [ ])
-      (builtins.split "(.{2})" (builtins.substring 1 6 hexStr)));
+  hex2int = s: with builtins; if s == "" then 0 else let l = stringLength s - 1; in 
+    (hex2decDigits."${substring l 1 s}" + 16 * (hex2int (substring 0 l s)));
 
   hex2decDigits = rec {
     "0" = 0; "1" = 1; "2" = 2; "3" = 3; "4" = 4; "5" = 5; "6" = 6; "7" = 7; "8" = 8; "9" = 9;
-    "a" = 10; A = a;
-    "b" = 11; B = b;
-    "c" = 12; C = c;
-    "d" = 13; D = d;
-    "e" = 14; E = e;
-    "f" = 15; F = f;
+    a = 10; b = 11; c = 12; d = 13; e = 14; f = 15; 
+    A = a; B = b; C = c; D = d; E = e; F = f;
   };
+
+  splitHex = hexStr:
+    map (x: builtins.elemAt x 0) (builtins.filter (a: a != "" && a != [ ])
+      (builtins.split "(.{2})" (builtins.substring 1 6 hexStr)));
 
   doubleDigitHexToDec = hex:
     16 * hex2decDigits."${builtins.substring 0 1 hex}"
@@ -85,9 +89,14 @@ in {
           type = types.listOf colorType;
         };
 
-        colors = mkOption {
+        colorTermList = mkOption {
           description =
-            "Set of colors from which the themes for various applications will be generated";
+            "List of base16 colors in order 00, 01, ..., 0F, ranging from 0 to 255";
+          type = colorList.type;
+        };
+
+        colorsRaw = mkOption {
+          description = "Attr Set of base16 colors without '#' in the beginning";
           type = with types;
             submodule {
               options = {
@@ -115,10 +124,11 @@ in {
               };
             };
         };
+        colors = mkOption { type = colorsRaw.type; };
 
         colorsDec = mkOption {
           description =
-            "Set of colors in decimal format (basically for KDE)";
+            "Set of colors in decimal format x (first two hex to decimal),y,z (basically for KDE)";
           
           type = colors.type;
         };
