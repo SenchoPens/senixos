@@ -1,9 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let 
   thm = config.themes.dark;
 in {
+  home-manager.users.sencho.home.sessionVariables = {
+    EDITOR = "nvim";
+  };
   home-manager.users.sencho.programs.neovim = {
     enable = true;
+    package = pkgs.neovim-unwrapped.overrideAttrs (old: {
+      version = "nightly";
+      src = inputs.neovim-unwrapped-nightly;
+    });
 
     vimdiffAlias = true;
     withNodeJs = true;
@@ -15,23 +22,15 @@ in {
       vim-gitgutter
 
       vim-airline
-      (vim-airline-themes.overrideAttrs (old:
-        let
-          intToHex = "0123456789ABCDEF";
-          airline-theme-filename = "base16_nixos_airline_theme.vim";
-          airline-theme = with builtins; with lib.strings; pkgs.writeText airline-theme-filename (concatStringsSep "\n" [
-            (concatImapStringsSep "\n" (i: color: ''let s:gui0${substring (i - 1) 1 intToHex} = "#${color}"'') thm.colorList)
-            (concatImapStringsSep "\n" (i: color: ''let s:cterm0${substring (i - 1) 1 intToHex} = ${color}'') thm.colorTermList)
-            (readFile ./base16-theme-end.vim)
-          ]);
-        in {
-          postUnpack = builtins.trace "${airline-theme}" ''
-            cp ${airline-theme} source/autoload/airline/themes/${airline-theme-filename}
-          '';
-        }
-      ))
+      vim-airline-themes
+      limelight-vim
 
-      vim-nix
+      vim-polyglot  # syntax highlighting
+
+      auto-pairs
+      vim-commentary  # gc to comment visual selection, gcc to comment line
+
+      vimtex
 
       coc-nvim  # checks and provides completion
       coc-json
@@ -39,6 +38,7 @@ in {
       coc-go
       coc-python
       coc-html
+      coc-vimtex
       # coc-rls  # https://github.com/neoclide/coc-rls for installation
       # coc-tabnine  # can be resourceful, AI-completion. Works shitty
     ];

@@ -19,8 +19,8 @@ with import ../support.nix { inherit lib config; }; {
         desktop = "firefox";
       };
       pdfViewer = {
-        cmd = "${pkgs.evince}/bin/evince";
-        desktop = "org.gnome.Evince";
+        cmd = "${pkgs.zathura}/bin/zathura";
+        desktop = "org.pwmt.zathura";
       };
     };
     home-manager.users.sencho.xdg.configFile."mimeapps.list".force = true;

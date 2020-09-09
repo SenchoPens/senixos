@@ -83,6 +83,23 @@
         "type": "github"
       }
     },
+    "neovim-unwrapped-nightly": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1599623242,
+        "narHash": "sha256-GDbr+DPq53d/ap7t1gzTX6VrV5Oojm00w0jIF8htXCg=",
+        "owner": "neovim",
+        "repo": "neovim",
+        "rev": "59712f6dbecfd9a7ccd021115170d1c9313b0969",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "ref": "nightly",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -102,17 +119,16 @@
     },
     "nixkgs": {
       "locked": {
-        "lastModified": 1598997501,
-        "narHash": "sha256-eF6JU3T+Kp+AGfEFbRuOJwX4UcA7XMU9Jbl20K88XYk=",
+        "lastModified": 1599676962,
+        "narHash": "sha256-hhLAa3cZ/ia2ibPZdJMXUcVYGnugGseRUjRFcE3cdUM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a092c1ece7469ff24ea5686306f4cb9adf76284b",
+        "rev": "63e11623578aaaf13db496c3069460ea49901277",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a092c1ece7469ff24ea5686306f4cb9adf76284b",
         "type": "github"
       }
     },
@@ -212,6 +228,7 @@
         "home-manager": "home-manager",
         "lambda-launcher": "lambda-launcher",
         "materia-theme": "materia-theme",
+        "neovim-unwrapped-nightly": "neovim-unwrapped-nightly",
         "nix": "nix",
         "nixkgs": "nixkgs",
         "nixpkgs": "nixpkgs_4",

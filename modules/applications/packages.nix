@@ -15,7 +15,15 @@
       nur.repos.balsoft.pkgs.nix-patch
 
       fzf
+      ripgrep  # rust grep, fast, use: rg
       zsh-powerlevel10k
+      exa
+
+      cm_unicode  # for latex
+      (texlive.combine {
+        inherit (pkgs.texlive) scheme-small collection-langcyrillic preprint invoice 
+        collection-fontsrecommended collection-latexrecommended latexmk;
+      })
 
       wl-clipboard
       grim
@@ -30,10 +38,10 @@
       vlc
       keepassxc
       libreoffice
-      evince
       gthumb
       jetbrains.clion
       jetbrains.pycharm-community
       zoom-us
+      torbrowser
     ];
 }

@@ -30,6 +30,16 @@ set incsearch
 " This will make Vim highlight all search results that
 " matched the search keyword
 set hlsearch
+" ignore case in search if no capitals 
+set ignorecase
+" don't ignore if there is a capital
+set smartcase
+
+" Allow easy navigation between wrapped lines.
+vmap j gj
+vmap k gk
+nmap j gj
+nmap k gk
 
 set tabstop=4
 set shiftwidth=4
@@ -45,13 +55,18 @@ nnoremap <space> za
 
 " Line numbers
 set number
+highlight clear SignColumn
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " Autowrite on disk on buffer switching, exit, etc
 set autowrite
 
+" If opening buffer, search first in opened windows.
+set switchbuf=usetab
+
 filetype plugin on
 filetype indent on
-set so=10
+set scrolloff=7
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -74,12 +89,52 @@ set hid
 set wildmenu
 set wildmode=longest:list,full
 
-""""" PLUGIN SETTINGS """""
+" Remove blank line below statusline
+set cmdheight=1
 
-" Airline
+""""" PLUGINS """""
+
+" airline
 let g:airline_powerline_fonts=1
 let g:airline_section_z = '%{strftime("%c")}'
-let g:airline_theme = 'base16_nixos_airline_theme'
+let g:airline_theme = 'minimalist'
 let g:airline_skip_empty_sections = 1
+" don't show mode outside of statusbar
+set noshowmode
 
 let g:airline#extensions#tabline#enabled = 1
+
+" auto-pairs
+let g:AutoPairsFlyMode = 0
+autocmd FileType tex let b:AutoPairs = AutoPairsDefine({'\[' : '\]', '\(': '\)'})
+" vim-polyglot
+let g:polyglot_disabled = ['tex', 'autoindent']
+
+" vimtex
+let g:tex_flavor = 'latex'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+  \ 'build_dir' : '.latexmk',
+  \ 'callback' : 1,
+  \ 'continuous' : 1,
+  \ 'executable' : 'latexmk',
+  \ 'hooks' : [],
+  \ 'options' : [
+  \   '-verbose',
+  \   '-file-line-error',
+  \   '-synctex=1',
+  \   '-interaction=nonstopmode',
+  \ ],
+\}
+
+" Limelight
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+" Default: 0.5
+let g:limelight_default_coefficient = 0.7
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1

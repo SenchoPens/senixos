@@ -2,7 +2,7 @@
   description = "Nixos config by Sencho Pens, stolen from balsoft/nixos-config";
 
   inputs = {
-    nixkgs.url = github:nixos/nixpkgs/a092c1ece7469ff24ea5686306f4cb9adf76284b;
+    nixkgs.url = github:nixos/nixpkgs;
     lambda-launcher.url = github:SenchoPens/lambda-launcher;
     NUR.url = github:nix-community/NUR;
     home-manager.url = github:rycee/home-manager;
@@ -10,6 +10,12 @@
 
     base16-summerfruit-scheme = {
       url = github:cscorley/base16-summerfruit-scheme;
+      flake = false;
+    };
+
+    neovim-unwrapped-nightly = {
+      url = github:neovim/neovim?ref=nightly;
+      #ref = "nightly";
       flake = false;
     };
 

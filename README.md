@@ -11,6 +11,12 @@ You can check out the structure of `./secret.nix` in `./modules/secrets.nix`
 * Editor - neovim
 * Launcher - λauncher 
 
+## Updating all packages
+```
+nix flake update
+sudo nixos-rebuild switch
+```
+
 ## Credits
-This configuration would not have been possible without original balsoft's
-configuration and his extensive support of the russian Nixos community at `https://t.me/ru_nixos`.
+This configuration would not have been possible without the original balsoft's
+configuration and the russian Nixos community (`https://t.me/ru_nixos`).

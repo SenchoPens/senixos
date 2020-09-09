@@ -12,6 +12,7 @@
     ./applications/packages.nix
     ./applications/alacritty.nix
     ./applications/nvim
+    ./applications/zathura.nix
 
     ./workspace/sway
     ./workspace/zsh

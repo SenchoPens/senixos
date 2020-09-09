@@ -9,10 +9,10 @@ in {
     fonts.defaultFont = with types; mkOption {
       type = attrsOf (submodule {
         options = {
-	  fontName = mkOption { type = str; };
-	  fontSize = mkOption { type = int; };
-	  font = mkOption { type = str; };
-	};
+	        fontName = mkOption { type = str; };
+	        fontSize = mkOption { type = int; };
+	        font = mkOption { type = str; };
+	      };
       });
     };
   };

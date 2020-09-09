@@ -25,6 +25,7 @@
       "snrs" = "sudo nixos-rebuild switch";
       "b-nix" = ''nix-build "<nixpkgs>" --no-out-link -A'';
       "nszsh" = "nix-shell --run zsh -p";
+      "ls" = "exa";
     };
 
     plugins = [
@@ -58,5 +59,12 @@
 
       chpwd_functions=(ls)
    '';
+  };
+
+  home-manager.users.sencho.programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+    enableZshIntegration = true;
+    enableFishIntegration = false;
   };
 }

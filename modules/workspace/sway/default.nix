@@ -199,11 +199,11 @@ in {
         "${modifier}+Control+Print" = script "screenshot-copy"
           "${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy";
 
-        "--release ${modifier}+Shift+Print" = script "screenshot-area" ''
+        "${modifier}+Shift+Print" = script "screenshot-area" ''
           ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png
         '';
 
-        "--release ${modifier}+Control+Shift+Print" =
+        "${modifier}+Control+Shift+Print" =
           script "screenshot-area-copy" ''
             ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
 
