@@ -24,10 +24,16 @@
     shellAliases = {
       "snrs" = "sudo nixos-rebuild switch";
       "b-nix" = ''nix-build "<nixpkgs>" --no-out-link -A'';
-      "nszsh" = "nix-shell --run zsh -p";
+
       "ls" = "exa --group-directories-first --icons -F";
+
       "mount"  = "sudo mount";
       "umount" = "sudo umount";
+
+      "ga" = "git add";
+      "gcm" = "git commit -m";
+      "gcam" = "git commit -am";
+      "gaacam" = "git add -A && git commit -m";
     };
 
     plugins = [
@@ -61,6 +67,7 @@
       r-nix(){nix run nixpkgs.$1 -c $@ }
 
       alias -g Ls="| less"
+      alias -g FZF="$(fzf)"
 
       alias -s txt=nvim
       alias -s {avi,mkv,mp4}=vlc

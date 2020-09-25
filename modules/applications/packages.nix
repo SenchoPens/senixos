@@ -7,6 +7,7 @@
       acpi
       light
       htop
+      psmisc  # killall, pstree, ...
 
       clang
       cmake
