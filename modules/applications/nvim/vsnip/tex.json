@@ -1,0 +1,102 @@
+{
+    "b/e": {
+        "prefix": "b/e",
+        "body": [
+            "\\begin{$1}",
+            "$0",
+            "\\end{$1}"
+        ]
+    },
+    "mi": {
+        "prefix": "mi",
+        "body": [
+            "\\($0\\)"
+        ]
+    },
+    "mc": {
+        "prefix": "mc",
+        "body": [
+            "\\[$0\\]"
+        ]
+    },
+    "mcb": {
+        "prefix": "mcb",
+        "body": [
+            "\\[",
+            "\t$0",
+            "\\]"
+        ]
+    },
+    "viff": {
+        "prefix": "viff",
+        "body": [
+            " \\\\\\\\",
+            "&\\Updownarrow \\\\\\\\",
+            "$0"
+        ]
+    },
+    "vuif": {
+        "prefix": "vuif",
+        "body": [
+            " \\\\\\\\",
+            "&\\Uparrow \\\\\\\\",
+            "$0"
+        ]
+    },
+    "vdif": {
+        "prefix": "vdif",
+        "body": [
+            " \\\\\\\\",
+            "&\\Downarrow \\\\\\\\",
+            "$0"
+        ]
+    },
+    "/-": {
+        "prefix": "/-",
+        "body": [
+            "\\setminus "
+        ]
+    },
+    "u": {
+        "prefix": "u",
+        "body": [
+            "\\cup "
+        ]
+    },
+    "a": {
+        "prefix": "a",
+        "body": [
+            "\\cap "
+        ]
+    },
+    "i": {
+        "prefix": "i",
+        "body": [
+            "\\land "
+        ]
+    },
+    "ili": {
+        "prefix": "ili",
+        "body": [
+            "\\lor "
+        ]
+    },
+    "ne": {
+        "prefix": "ne",
+        "body": [
+            "\\lnot "
+        ]
+    },
+    "/": {
+        "prefix": "/",
+        "body": [
+            "\\frac{$1}{$2} $0"
+        ]
+    },
+    "*": {
+        "prefix": "*",
+        "body": [
+            "\\cdot "
+        ]
+    }
+}

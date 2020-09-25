@@ -25,8 +25,10 @@ in {
   home-manager.users.sencho.wayland.windowManager.sway = {
     enable = true;
 
-    config = rec {
-      modifier = "Mod1";
+    config = let
+      modifier' = "Mod4";  # "Win" key
+    in rec {
+      modifier = "Mod1";  # "Alt" key
 
       focus.followMouse = false;
       focus.forceWrapping = true;
@@ -154,23 +156,39 @@ in {
 
         wsKeys = (builtins.genList (x: [ (toString x) (get_ws x) ]) 10);
 
-        xdotool_click_n = n: ''exec "sh -c 'eval `${pkgs.xdotool}/bin/xdotool getactivewindow click --clearmodifiers ${builtins.toString(n)}`'"'';
-        ydotool = "sudo ${pkgs.ydotool}/bin/ydotool";
-        ydotool_do_alt = action: "${ydotool} key --up Alt && ${ydotool} ${action} && ${ydotool} key --down Alt";
+        # xdotool_click_n = n: ''exec "sh -c 'eval `${pkgs.xdotool}/bin/xdotool getactivewindow click --clearmodifiers ${builtins.toString(n)}`'"'';
+        # ydotool = "sudo ${pkgs.ydotool}/bin/ydotool";
+        # ydotool_do_alt = action: "${ydotool} key --up Alt && ${ydotool} ${action} && ${ydotool} key --down Alt";
+        sway-click = btn: "seat - cursor press button${toString btn}; seat - cursor release button${toString btn}";
+        sway-move = x: y: "seat - cursor move ${toString x} ${toString y}";
 
-      in ({
+      in lib.mapAttrs'
+      (name: value: {
+        name = "--to-code " + name;
+        inherit value;
+      })  # makes bindings keyboard layout-agnostic
+      ({
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Return" = "exec ${apps.term.cmd}";
         "${modifier}+o" = "layout toggle all";
 
-        "${modifier}+q" = ydotool_do_alt "click 1";  # left
-        "${modifier}+e" = ydotool_do_alt "click 2";  # rigth
-        "${modifier}+w" = ydotool_do_alt "click 3";  # middle
+        #"${modifier'}+s" = "echo 'clicked' > /tmp/lol && ${ydotool} click 1";  # left
+        "${modifier'}+s" = sway-click 1;
+        "${modifier'}+d" = sway-click 2;
+        "${modifier'}+f" = sway-click 3;
 
-        "${modifier}+h" = ydotool_do_alt "key left";
-        "${modifier}+l" = ydotool_do_alt "key right";
-        "${modifier}+k" = ydotool_do_alt "key up";
-        "${modifier}+j" = ydotool_do_alt "key down";
+        "${modifier'}+h" = sway-move (-100) 0;
+        "${modifier'}+j" = sway-move 0 100;
+        "${modifier'}+k" = sway-move 0 (-100);
+        "${modifier'}+l" = sway-move 100 0;
+        "${modifier'}+Ctrl+h" = sway-move (-50) 0;
+        "${modifier'}+Ctrl+j" = sway-move 0 50;
+        "${modifier'}+Ctrl+k" = sway-move 0 (-50);
+        "${modifier'}+Ctrl+l" = sway-move 50 0;
+        "${modifier'}+Shift+Ctrl+h" = sway-move (-25) 0;
+        "${modifier'}+Shift+Ctrl+j" = sway-move 0 25;
+        "${modifier'}+Shift+Ctrl+k" = sway-move 0 (-25);
+        "${modifier'}+Shift+Ctrl+l" = sway-move 25 0;
 
         "${modifier}+Shift+h" = "focus child; focus left";
         "${modifier}+Shift+l" = "focus child; focus right";
@@ -179,8 +197,7 @@ in {
 
         "${modifier}+Left" = "focus child; focus left";
         "${modifier}+Right" = "focus child; focus right";
-        "${modifier}+Up" = "focus child; focus up";
-        "${modifier}+Down" = "focus child; focus down";
+        "${modifier}+Up" = "focus child; focus up"; "${modifier}+Down" = "focus child; focus down";
 
         "${modifier}+Shift+Ctrl+h" = "move left";
         "${modifier}+Shift+Ctrl+l" = "move right";
@@ -195,45 +212,37 @@ in {
 
         "${modifier}+Print" = script "screenshot"
           "${pkgs.grim}/bin/grim Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png";
-
         "${modifier}+Control+Print" = script "screenshot-copy"
           "${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy";
-
         "${modifier}+Shift+Print" = script "screenshot-area" ''
           ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png
         '';
-
         "${modifier}+Control+Shift+Print" =
           script "screenshot-area-copy" ''
             ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
 
-        "${modifier}+x" = "move workspace to output right";
-        "${modifier}+F5" = "reload";
-        "${modifier}+Shift+F5" = "exit";
-        "${modifier}+Shift+x" = "layout splith";
-        "${modifier}+Shift+v" = "layout splitv";
-        "${modifier}+z" = "split h";
-        "${modifier}+v" = "split v";
+        "${modifier}+x" = "reload";
+        "${modifier}+Shift+x" = "exit";
+
         "${modifier}+F1" = "move to scratchpad";
         "${modifier}+F2" = "scratchpad show";
         "${modifier}+F3" = "exec sudo ${pkgs.light}/bin/light -U 5";
         "${modifier}+F4" = "exec sudo ${pkgs.light}/bin/light -A 5";
-        "${modifier}+F11" = "output * dpms off";
+        "${modifier}+F5" = "${pkgs.pamixer}/bin/pamixer --allow-boost -t";
+        "${modifier}+F6" = "${pkgs.pamixer}/bin/pamixer --allow-boost -d 5";
+        "${modifier}+F7" = "${pkgs.pamixer}/bin/pamixer --allow-boost -i 5";
+        "${modifier}+F11" = "alacritty -e nmtui";
         "${modifier}+F12" = "output * dpms on";
+
         "${modifier}+End" = "exec ${lock}";
+
         "${modifier}+p" = "sticky toggle";
-
         "${modifier}+b" = "focus mode_toggle";
-
-        "button2" = "kill";
-        "--whole-window ${modifier}+button2" = "kill";
       } 
-
       // builtins.listToAttrs (builtins.map (x: {
         name = "${modifier}+${builtins.elemAt x 0}";
         value = "workspace ${builtins.elemAt x 1}";
       }) wsKeys) 
-
       // builtins.listToAttrs (builtins.map (x: {
         name = "${modifier}+Shift+${builtins.elemAt x 0}";
         value = "move container to workspace ${builtins.elemAt x 1}";

@@ -9,7 +9,7 @@
 #   3. `sudo nixos-rebuild switch --flake .`
 #   4. Log in to application and services where neccesary
 
-{ config, pkgs, lib, inputs, name, ... }:
+{ config, nix, pkgs, lib, inputs, name, ... }:
 rec {
   imports = [
     (./hardware-configuration + "/${name}.nix")
@@ -59,6 +59,7 @@ rec {
     #layout = "sencho";
     #xkbOptions = "grp:rshift_toggle,grp_led:caps,caps:ctrl_modifier";
   #};
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home-manager.users.sencho.home.language = let
     en = "en_GB.UTF-8";

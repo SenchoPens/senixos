@@ -25,7 +25,9 @@
       "snrs" = "sudo nixos-rebuild switch";
       "b-nix" = ''nix-build "<nixpkgs>" --no-out-link -A'';
       "nszsh" = "nix-shell --run zsh -p";
-      "ls" = "exa";
+      "ls" = "exa --group-directories-first --icons -F";
+      "mount"  = "sudo mount";
+      "umount" = "sudo umount";
     };
 
     plugins = [
@@ -54,11 +56,23 @@
       }
     ];
 
-    initExtra = ''
+    initExtra = 
+      ''
       r-nix(){nix run nixpkgs.$1 -c $@ }
 
+      alias -g Ls="| less"
+
+      alias -s txt=nvim
+      alias -s {avi,mkv,mp4}=vlc
+      alias -s html='firefox'
+      alias -s pdf='zathura'
+      alias -s docx='libreoffice'
+
       chpwd_functions=(ls)
-   '';
+      ''
+      +
+      builtins.readFile ./functions.zsh
+   ;
   };
 
   home-manager.users.sencho.programs.direnv = {

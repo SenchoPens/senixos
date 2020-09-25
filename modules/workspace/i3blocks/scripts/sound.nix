@@ -1,8 +1,8 @@
 { pamixer, lxqt, iconfont, ... }: ''
   case $BLOCK_BUTTON in
-       2) ${pamixer}/bin/pamixer -t;;
-       4) ${pamixer}/bin/pamixer -i 5;;
-       5) ${pamixer}/bin/pamixer -d 5;;
+       2) ${pamixer}/bin/pamixer --allow-boost -t;;
+       4) ${pamixer}/bin/pamixer --allow-boost -i 5;;
+       5) ${pamixer}/bin/pamixer --allow-boost -d 5;;
   esac
   code=0
   if [[ `${pamixer}/bin/pamixer --get-mute` = "true" ]]

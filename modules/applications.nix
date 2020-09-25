@@ -37,7 +37,10 @@ with import ../support.nix { inherit lib config; }; {
             "x-scheme-handler/about" = browser;
             "x-scheme-handler/unknown" = browser;
             "image/*" = { desktop = "gthumb"; };
+            "image/vnd.djvu" = pdfViewer;
             "application/pdf" = pdfViewer;
+            "application/vnd.comicbook+zip" = pdfViewer;
+            "application/vnd.comicbook-rar" = pdfViewer;
           };
     };
   };

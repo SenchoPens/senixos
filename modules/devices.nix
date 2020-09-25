@@ -38,6 +38,8 @@ with types; {
         };
 
         ram = 12;
+
+        keyboardUdevFile = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
       };
 
       bob-Laptop = {

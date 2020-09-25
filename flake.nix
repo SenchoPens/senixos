@@ -2,7 +2,7 @@
   description = "Nixos config by Sencho Pens, stolen from balsoft/nixos-config";
 
   inputs = {
-    nixkgs.url = github:nixos/nixpkgs;
+    nixpkgs.url = "github:nixos/nixpkgs?ref=master";
     lambda-launcher.url = github:SenchoPens/lambda-launcher;
     NUR.url = github:nix-community/NUR;
     home-manager.url = github:rycee/home-manager;
@@ -15,7 +15,11 @@
 
     neovim-unwrapped-nightly = {
       url = github:neovim/neovim?ref=nightly;
-      #ref = "nightly";
+      flake = false;
+    };
+
+    interception-k2k = {
+      url = github:zsugabubus/interception-k2k;
       flake = false;
     };
 

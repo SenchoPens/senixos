@@ -49,6 +49,22 @@
         "type": "github"
       }
     },
+    "interception-k2k": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1599945074,
+        "narHash": "sha256-+fP7cMK4sdXH9UAP3xxSaRcV+rB37Li23+hfenVD9fI=",
+        "owner": "zsugabubus",
+        "repo": "interception-k2k",
+        "rev": "259a549b1e215c47f0d243e9e5f484ce490b61e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsugabubus",
+        "repo": "interception-k2k",
+        "type": "github"
+      }
+    },
     "lambda-launcher": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -117,21 +133,6 @@
         "type": "indirect"
       }
     },
-    "nixkgs": {
-      "locked": {
-        "lastModified": 1599676962,
-        "narHash": "sha256-hhLAa3cZ/ia2ibPZdJMXUcVYGnugGseRUjRFcE3cdUM=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "63e11623578aaaf13db496c3069460ea49901277",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1591748508,
@@ -195,16 +196,18 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1597668177,
-        "narHash": "sha256-Fpz9gZhPmMk8nizBqBqecV9ZU6zHKpx/zXz+JyQQYA8=",
-        "owner": "NixOS",
+        "lastModified": 1599685432,
+        "narHash": "sha256-mE3XAZJExdAxfkPgLRXZs/WiR6NSyyJWsPql5/DXywQ=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "914b9788fd18a0eb908c7bf630cb206f5dabd25e",
+        "rev": "56708c3bf301e548a44d20791171ee0997b4b3e1",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nur": {
@@ -226,11 +229,11 @@
         "NUR": "NUR",
         "base16-summerfruit-scheme": "base16-summerfruit-scheme",
         "home-manager": "home-manager",
+        "interception-k2k": "interception-k2k",
         "lambda-launcher": "lambda-launcher",
         "materia-theme": "materia-theme",
         "neovim-unwrapped-nightly": "neovim-unwrapped-nightly",
         "nix": "nix",
-        "nixkgs": "nixkgs",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur"

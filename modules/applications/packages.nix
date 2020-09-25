@@ -8,7 +8,7 @@
       light
       htop
 
-      gcc
+      clang
       cmake
       gnumake
       python3
@@ -26,12 +26,13 @@
       })
 
       wl-clipboard
+      pamixer
       grim
       ydotool
       slurp
       lambda-launcher
       xdg_utils
-      libsForQt5.qtstyleplugins
+      # libsForQt5.qtstyleplugins  # did not build :(
 
       tdesktop
       transmission-gtk
@@ -42,6 +43,7 @@
       jetbrains.clion
       jetbrains.pycharm-community
       zoom-us
+      skypeforlinux
       torbrowser
     ];
 }

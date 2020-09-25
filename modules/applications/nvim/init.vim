@@ -1,5 +1,5 @@
 " Set ergonomic <leader> key
-:let mapleader = ","
+let mapleader = ","
 
 " Change between buffers
 map <C-J> :bprev<CR>
@@ -81,6 +81,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Language indentation settings
 autocmd FileType go setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 autocmd FileType nix setlocal tabstop=2 shiftwidth=2
+autocmd FileType nix setlocal tabstop=4 shiftwidth=4
 
 " Do not close the buffer when changing them
 set hid
@@ -106,7 +107,13 @@ let g:airline#extensions#tabline#enabled = 1
 
 " auto-pairs
 let g:AutoPairsFlyMode = 0
-autocmd FileType tex let b:AutoPairs = AutoPairsDefine({'\[' : '\]', '\(': '\)'})
+" autocmd FileType tex let b:AutoPairs = AutoPairsDefine({'\\[' : '\\]', '\\(': '\\)'})  " does not work :(
+" This 3-line magic is needed for integration with completion-nvim
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
+let g:AutoPairsShortcutToggle = ""  " Default is Ctrl-P, inconvinient
+
 " vim-polyglot
 let g:polyglot_disabled = ['tex', 'autoindent']
 
@@ -127,6 +134,8 @@ let g:vimtex_compiler_latexmk = {
   \   '-interaction=nonstopmode',
   \ ],
 \}
+set conceallevel=1
+let g:tex_conceal='abdmg'
 
 " Limelight
 " Color name (:help cterm-colors) or ANSI code
@@ -138,3 +147,26 @@ let g:limelight_conceal_guifg = '#777777'
 let g:limelight_default_coefficient = 0.7
 " Number of preceding/following paragraphs to include (default: 0)
 let g:limelight_paragraph_span = 1
+
+" Completion-nvim
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+" Avoid showing message extra message when using completion
+set shortmess+=c
+" Default is wierd pink
+highlight Pmenu ctermbg=gray guibg=gray
+
+" Vim-vsnip
+" Without this, j and k move selection in Select mode
+let g:completion_enable_snippet = 'vim-vsnip'
+smap j j
+smap k k
+" Expand or jump
+imap <expr> <C-l>  vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>  vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr><Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr><Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr><S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr><S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'

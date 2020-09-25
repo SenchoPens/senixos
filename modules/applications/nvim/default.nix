@@ -2,8 +2,21 @@
 let 
   thm = config.themes.dark;
 in {
+  home-manager.users.sencho.home.packages = with pkgs; [
+    python38Packages.python-language-server
+    nodePackages.bash-language-server
+    nodePackages.vim-language-server
+    gopls
+    ccls
+    texlab
+  ];
   home-manager.users.sencho.home.sessionVariables = {
     EDITOR = "nvim";
+    GIT_EDITOR = "nvim";
+    VISUAL = "nvim";
+    DIFFPROG = "nvim -d";
+    MANPAGER = "nvim +Man!";
+    MANWIDTH = 999;
   };
   home-manager.users.sencho.programs.neovim = {
     enable = true;
@@ -24,6 +37,7 @@ in {
       vim-airline
       vim-airline-themes
       limelight-vim
+      vim-smoothie
 
       vim-polyglot  # syntax highlighting
 
@@ -32,31 +46,39 @@ in {
 
       vimtex
 
-      coc-nvim  # checks and provides completion
-      coc-json
-      coc-css
-      coc-go
-      coc-python
-      coc-html
-      coc-vimtex
-      # coc-rls  # https://github.com/neoclide/coc-rls for installation
-      # coc-tabnine  # can be resourceful, AI-completion. Works shitty
+      nvim-lspconfig
+      completion-nvim
+      # https://github.com/Infinisil/all-hies  # haskell for nix
+
+      vim-vsnip
+      vim-vsnip-integ
     ];
 
     extraPython3Packages = (ps: with ps; [
-      pylint
-      jedi
+      # python-language-server  # pyls looks up the system interpreter :(
     ]);
 
     extraConfig = 
-      builtins.readFile ./init.vim
-      + builtins.readFile ./coc.vim
-    ;
-  };
+      (builtins.readFile ./init.vim)
+      +
+      ''
+        let g:vsnip_snippet_dir = "${./vsnip}"
+      ''
+      +
+      ''
+        lua <<EOF
+        vim.cmd('packadd nvim-lspconfig')
+        vim.cmd('packadd completion-nvim')
 
-  # home-manager.users.sencho.xdg.configFile."nvim/coc-settings.json".source = "${./coc-settings.json}";
-  home-manager.users.sencho.xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
-    "python.pythonPath" = "${config.home-manager.users.sencho.programs.neovim.finalPackage}/bin/nvim-python3";
-    # "rust-client.disableRustup" = true;  # coc-rls
+        local nvim_lsp = require'nvim_lsp'
+
+        nvim_lsp.pyls.setup{}
+        nvim_lsp.bashls.setup{}
+        nvim_lsp.vimls.setup{}
+        nvim_lsp.ccls.setup{}
+        nvim_lsp.texlab.setup{}
+        EOF
+      ''
+    ;
   };
 }
