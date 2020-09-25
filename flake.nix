@@ -27,6 +27,11 @@
       url = github:nana-4/materia-theme;
       flake = false;
     };
+
+    base16-qutebrowser = {
+      url = github:theova/base16-qutebrowser;
+      flake = false;
+    };
   };
   
   outputs = { nixpkgs, nix, nur, self, ... } @ inputs: {

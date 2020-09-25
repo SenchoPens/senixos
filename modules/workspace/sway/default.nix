@@ -231,7 +231,7 @@ in {
         "${modifier}+F5" = "${pkgs.pamixer}/bin/pamixer --allow-boost -t";
         "${modifier}+F6" = "${pkgs.pamixer}/bin/pamixer --allow-boost -d 5";
         "${modifier}+F7" = "${pkgs.pamixer}/bin/pamixer --allow-boost -i 5";
-        "${modifier}+F11" = "alacritty -e nmtui";
+        "${modifier}+F11" = "exec alacritty -e nmtui";
         "${modifier}+F12" = "output * dpms on";
 
         "${modifier}+End" = "exec ${lock}";

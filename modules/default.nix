@@ -13,6 +13,7 @@
     ./applications/firefox.nix
     ./applications/packages.nix
     ./applications/alacritty.nix
+    ./applications/qutebrowser.nix
 
     ./workspace/zsh
     ./workspace/sway

@@ -67,7 +67,7 @@
       r-nix(){nix run nixpkgs.$1 -c $@ }
 
       alias -g Ls="| less"
-      alias -g FZF="$(fzf)"
+      alias -g FZF='$(fzf)'
 
       alias -s txt=nvim
       alias -s {avi,mkv,mp4}=vlc

@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "base16-qutebrowser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1598273669,
+        "narHash": "sha256-juaehJFfYcTKB9OUYliD9kQ3uR4l3oRMTvACxHFEEG8=",
+        "owner": "theova",
+        "repo": "base16-qutebrowser",
+        "rev": "3dd94ca2a5ea15ed42418cdd96120eff43ea0af1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "theova",
+        "repo": "base16-qutebrowser",
+        "type": "github"
+      }
+    },
     "base16-summerfruit-scheme": {
       "flake": false,
       "locked": {
@@ -227,6 +243,7 @@
     "root": {
       "inputs": {
         "NUR": "NUR",
+        "base16-qutebrowser": "base16-qutebrowser",
         "base16-summerfruit-scheme": "base16-summerfruit-scheme",
         "home-manager": "home-manager",
         "interception-k2k": "interception-k2k",

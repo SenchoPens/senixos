@@ -19,6 +19,7 @@
       ripgrep  # rust grep, fast, use: rg
       zsh-powerlevel10k
       exa
+      gopass  # password manager
 
       cm_unicode  # for latex
       (texlive.combine {

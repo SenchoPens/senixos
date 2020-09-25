@@ -14,10 +14,11 @@ let
       type = colorType;
     }));
   fromBase16 = { base00, base01, base02, base03, base04, base05, base06, base07
-    , base08, base09, base0A, base0B, base0C, base0D, base0E, base0F, ... }:
+    , base08, base09, base0A, base0B, base0C, base0D, base0E, base0F, ... }@originalTheme:
     rec {
       #ToDo: rename color*List -> colors*List?
       #ToDo: rename colorList -> colorRawList
+      inherit originalTheme;
       colorList = [ base00 base01 base02 base03 base04 base05 base06 base07 base08 base09 base0A base0B base0C base0D base0E base0F ];
       colorTermList = map (color: toString (((hex2int color) * 256) / 16777216)) colorList;
 
@@ -82,6 +83,11 @@ in {
 
     type = types.attrsOf (types.submodule {
       options = rec {
+        originalTheme = mkOption {
+          description =
+            "Attrset { baseXX = '#yyyyyy'; }";
+          type = types.attrs;
+        };
 
         colorList = mkOption {
           description =
