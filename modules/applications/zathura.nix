@@ -1,6 +1,6 @@
 { config, pkgs, home-manager, ... }:
 let
-  thm = config.themes.dark.colors;
+  thm = config.themes.default.colors;
 in {
   home-manager.users.sencho.programs.zathura = {
     enable = true;

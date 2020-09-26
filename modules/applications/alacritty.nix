@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
-let thm = config.themes.dark.colors;
+let thm = config.themes.default.colors;
 in {
   home-manager.users.sencho.programs.alacritty = {
     enable = true;

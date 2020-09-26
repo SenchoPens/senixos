@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  thm = config.themes.dark.colors;
+  thm = config.themes.default.colors;
 
   apps = config.defaultApplications;
 

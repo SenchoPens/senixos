@@ -1,6 +1,6 @@
 { pkgs, lib, config, inputs, ... }:
 let
-  thmDec = config.themes.dark.colorsDec;
+  thmDec = config.themes.default.colorsDec;
 in with import ../../support.nix { inherit lib config; }; {
   home-manager.users.sencho.xdg.configFile."okularpartrc".text = genIni {
     "Dlg Accessibility" = {

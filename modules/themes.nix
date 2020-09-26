@@ -142,7 +142,7 @@ in {
     });
   };
   config = {
-    themes = {
+    themes = rec {
       light = 
         fromBase16 (
           fromYAML (
@@ -156,6 +156,8 @@ in {
             builtins.readFile "${inputs.base16-summerfruit-scheme}/summerfruit-dark.yaml"
           )
         );
+
+      default = dark;
     };
   };
 }

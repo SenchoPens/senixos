@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 let 
-  thm = config.themes.dark;
+  thm = config.themes.default;
 in {
   home-manager.users.sencho.home.packages = with pkgs; [
     python38Packages.python-language-server
