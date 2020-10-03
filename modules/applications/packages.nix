@@ -47,5 +47,6 @@
       zoom-us
       skypeforlinux
       torbrowser
+      discord-ptb
     ];
 }

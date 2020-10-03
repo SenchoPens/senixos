@@ -16,7 +16,7 @@ in {
       sx4 = "https://searx.fmac.xyz/?q={}";
     };
 
-    config = {
+    settings = {
       
     };
 

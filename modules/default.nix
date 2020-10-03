@@ -14,6 +14,7 @@
     ./applications/packages.nix
     ./applications/alacritty.nix
     ./applications/qutebrowser.nix
+    ./applications/vscode
 
     ./workspace/zsh
     ./workspace/sway

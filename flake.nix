@@ -32,6 +32,11 @@
       url = github:theova/base16-qutebrowser;
       flake = false;
     };
+
+    vsliveshare = {
+      url = github:msteen/nixos-vsliveshare;
+      flake = false;
+    };
   };
   
   outputs = { nixpkgs, nix, nur, self, ... } @ inputs: {

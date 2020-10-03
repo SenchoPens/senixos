@@ -30,7 +30,7 @@
     "viff": {
         "prefix": "viff",
         "body": [
-            " \\\\\\\\",
+            "\\\\\\\\",
             "&\\Updownarrow \\\\\\\\",
             "$0"
         ]
@@ -38,7 +38,7 @@
     "vuif": {
         "prefix": "vuif",
         "body": [
-            " \\\\\\\\",
+            "\\\\\\\\",
             "&\\Uparrow \\\\\\\\",
             "$0"
         ]
@@ -46,8 +46,32 @@
     "vdif": {
         "prefix": "vdif",
         "body": [
-            " \\\\\\\\",
+            "\\\\\\\\",
             "&\\Downarrow \\\\\\\\",
+            "$0"
+        ]
+    },
+    "vifft": {
+        "prefix": "vifft",
+        "body": [
+            "\\\\\\\\",
+            "&\\Updownarrow \\text{$1}\\\\\\\\",
+            "$0"
+        ]
+    },
+    "vuift": {
+        "prefix": "vuift",
+        "body": [
+            "\\\\\\\\",
+            "&\\Uparrow \\text{$1}\\\\\\\\",
+            "$0"
+        ]
+    },
+    "vdift": {
+        "prefix": "vdift",
+        "body": [
+            "\\\\\\\\",
+            "&\\Downarrow \\text{$1}\\\\\\\\",
             "$0"
         ]
     },
@@ -93,10 +117,18 @@
             "\\frac{$1}{$2} $0"
         ]
     },
-    "*": {
-        "prefix": "*",
+    "*.": {
+        "prefix": "*.",
         "body": [
             "\\cdot "
+        ]
+    },
+    "b/eproofnl": {
+        "prefix": "b/eproofnl",
+        "body": [
+            "\\begin{proof}\\ \\\\\\\\",
+            "$0",
+            "\\end{proof}"
         ]
     }
 }

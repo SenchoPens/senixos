@@ -253,7 +253,24 @@
         "nix": "nix",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-wayland": "nixpkgs-wayland",
-        "nur": "nur"
+        "nur": "nur",
+        "vsliveshare": "vsliveshare"
+      }
+    },
+    "vsliveshare": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1585828976,
+        "narHash": "sha256-/c7CJ2TDwgsKEidwxgIOqyTx1YcPgYRqzS1AV6a4b2c=",
+        "owner": "msteen",
+        "repo": "nixos-vsliveshare",
+        "rev": "a54bfc74c5e7ae056f61abdb970c6cd6e8fb5e53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "msteen",
+        "repo": "nixos-vsliveshare",
+        "type": "github"
       }
     }
   },
