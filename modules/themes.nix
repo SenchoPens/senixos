@@ -157,7 +157,7 @@ in {
           )
         );
 
-      default = dark;
+      default = light;
     };
   };
 }
