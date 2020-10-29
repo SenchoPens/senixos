@@ -2,7 +2,9 @@
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.SHELL = "zsh";
 
-  home-manager.users.sencho.programs.zsh = {
+  home-manager.users.sencho.programs.zsh = let
+    scripts = import ./scripts pkgs config;
+  in {
     enable = true;
 
     initExtraBeforeCompInit = ''
@@ -25,7 +27,7 @@
       "snrs" = "sudo nixos-rebuild switch";
       "b-nix" = ''nix-build "<nixpkgs>" --no-out-link -A'';
 
-      "ls" = "exa --group-directories-first --icons -F";
+      "ls" = "exa --group-directories-first -F";
 
       "mount"  = "sudo mount";
       "umount" = "sudo umount";
@@ -68,6 +70,7 @@
 
       alias -g Ls="| less"
       alias -g FZF='$(fzf)'
+      alias -g HSE='$(${scripts.hse-dir})'
 
       alias -s txt=nvim
       alias -s {avi,mkv,mp4}=vlc
@@ -75,7 +78,15 @@
       alias -s pdf='zathura'
       alias -s docx='libreoffice'
 
-      chpwd_functions=(ls)
+      hash -d hw=~/code/gitlab/SenchoPens/hse-hw
+      hash -d mat=~/Documents/hse-materials
+      hash -d hse-tex=~/code/github/SenchoPens/my-hse-tex
+
+      function list_all() {
+        emulate -L zsh
+        exa --group-directories-first -F
+      }
+      chpwd_functions=(''${chpwd_functions[@]} "list_all")
       ''
       +
       builtins.readFile ./functions.zsh

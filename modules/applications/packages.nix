@@ -12,7 +12,9 @@
       clang
       cmake
       gnumake
-      python3
+      (python3.withPackages (ps:
+        [ps.numpy ps.ptpython ps.sympy]
+      ))
       nur.repos.balsoft.pkgs.nix-patch
 
       fzf
@@ -24,7 +26,8 @@
       cm_unicode  # for latex
       (texlive.combine {
         inherit (pkgs.texlive) scheme-small collection-langcyrillic preprint invoice 
-        collection-fontsrecommended collection-latexrecommended latexmk;
+        collection-fontsrecommended collection-latexrecommended fontawesome latexmk yfonts
+        gauss;
       })
 
       wl-clipboard
@@ -47,6 +50,7 @@
       zoom-us
       skypeforlinux
       torbrowser
-      discord-ptb
+      discord
+      google-chrome-beta-with-pipewire
     ];
 }

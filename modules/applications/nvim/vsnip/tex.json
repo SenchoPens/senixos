@@ -1,16 +1,25 @@
 {
-    "b/e": {
-        "prefix": "b/e",
+    "be": {
+        "prefix": "be",
         "body": [
             "\\begin{$1}",
-            "$0",
-            "\\end{$1}"
+            "$2",
+            "\\end{$1}",
+            "$0"
         ]
     },
     "mi": {
         "prefix": "mi",
         "body": [
-            "\\($0\\)"
+            "\\($1\\) $0"
+        ]
+    },
+    "mib": {
+        "prefix": "mib",
+        "body": [
+            "\\(",
+            "\t$1",
+            "\\)"
         ]
     },
     "mc": {
@@ -35,7 +44,7 @@
             "$0"
         ]
     },
-    "vuif": {
+    "uif": {
         "prefix": "vuif",
         "body": [
             "\\\\\\\\",
@@ -43,7 +52,7 @@
             "$0"
         ]
     },
-    "vdif": {
+    "dif": {
         "prefix": "vdif",
         "body": [
             "\\\\\\\\",
@@ -59,7 +68,7 @@
             "$0"
         ]
     },
-    "vuift": {
+    "uift": {
         "prefix": "vuift",
         "body": [
             "\\\\\\\\",
@@ -67,7 +76,7 @@
             "$0"
         ]
     },
-    "vdift": {
+    "dift": {
         "prefix": "vdift",
         "body": [
             "\\\\\\\\",
@@ -117,18 +126,24 @@
             "\\frac{$1}{$2} $0"
         ]
     },
-    "*.": {
-        "prefix": "*.",
+    "**": {
+        "prefix": "**",
         "body": [
             "\\cdot "
         ]
     },
-    "b/eproofnl": {
-        "prefix": "b/eproofnl",
+    "beproofnl": {
+        "prefix": "beproofnl",
         "body": [
-            "\\begin{proof}\\ \\\\\\\\",
+            "\\begin{proof}\\ \\\\\\\\ \\indent",
             "$0",
             "\\end{proof}"
+        ]
+    },
+    "txt": {
+        "prefix": "t",
+        "body": [
+            "\\text{$0}"
         ]
     }
 }

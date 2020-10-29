@@ -81,7 +81,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Language indentation settings
 autocmd FileType go setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 autocmd FileType nix setlocal tabstop=2 shiftwidth=2
-autocmd FileType nix setlocal tabstop=4 shiftwidth=4
 
 " Do not close the buffer when changing them
 set hid
@@ -166,7 +165,3 @@ smap k k
 " Expand or jump
 imap <expr> <C-l>  vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l>  vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-imap <expr><Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-smap <expr><Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-imap <expr><S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-smap <expr><S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'

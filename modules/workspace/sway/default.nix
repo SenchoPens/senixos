@@ -264,6 +264,8 @@ in {
       default_border pixel 1
       hide_edge_borders --i3 smart
       exec pkill swaynag
+      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
+      exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
     '';
   };
 }

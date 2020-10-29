@@ -52,6 +52,8 @@ in {
 
       vim-vsnip
       vim-vsnip-integ
+
+      floobits-neovim
     ];
 
     extraPython3Packages = (ps: with ps; [
