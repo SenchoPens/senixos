@@ -81,6 +81,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Language indentation settings
 autocmd FileType go setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 autocmd FileType nix setlocal tabstop=2 shiftwidth=2
+autocmd FileType hs setlocal tabstop=2 shiftwidth=2
 
 " Do not close the buffer when changing them
 set hid
@@ -103,15 +104,6 @@ let g:airline_skip_empty_sections = 1
 set noshowmode
 
 let g:airline#extensions#tabline#enabled = 1
-
-" auto-pairs
-let g:AutoPairsFlyMode = 0
-" autocmd FileType tex let b:AutoPairs = AutoPairsDefine({'\\[' : '\\]', '\\(': '\\)'})  " does not work :(
-" This 3-line magic is needed for integration with completion-nvim
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
-let g:AutoPairsShortcutToggle = ""  " Default is Ctrl-P, inconvinient
 
 " vim-polyglot
 let g:polyglot_disabled = ['tex', 'autoindent']

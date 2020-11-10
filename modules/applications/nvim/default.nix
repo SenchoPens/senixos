@@ -41,7 +41,6 @@ in {
 
       vim-polyglot  # syntax highlighting
 
-      auto-pairs
       vim-commentary  # gc to comment visual selection, gcc to comment line
 
       vimtex
@@ -57,7 +56,7 @@ in {
     ];
 
     extraPython3Packages = (ps: with ps; [
-      # python-language-server  # pyls looks up the system interpreter :(
+      python-language-server  # pyls looks up the system interpreter :(
     ]);
 
     extraConfig = 
@@ -74,7 +73,13 @@ in {
 
         local nvim_lsp = require'nvim_lsp'
 
-        nvim_lsp.pyls.setup{}
+        nvim_lsp.pyls.setup{
+          settings = {
+            pycodestyle = {
+              enabled = false;
+            }
+          }
+        }
         nvim_lsp.bashls.setup{}
         nvim_lsp.vimls.setup{}
         nvim_lsp.ccls.setup{}
@@ -84,3 +89,4 @@ in {
     ;
   };
 }
+
