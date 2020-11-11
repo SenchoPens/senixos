@@ -12,7 +12,6 @@ in {
     })
   ] ++ [
     (import ../overlays/overlay_1.nix)
-    (import ../overlays/overlay_2.nix)
   ];
 
   nixpkgs.config = import ./nixpkgs-config.nix;

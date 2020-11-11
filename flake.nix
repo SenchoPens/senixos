@@ -5,11 +5,16 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=master";
     lambda-launcher.url = github:SenchoPens/lambda-launcher;
     NUR.url = github:nix-community/NUR;
-    home-manager.url = github:rycee/home-manager;
+    home-manager.url = github:rycee/home-manager?rev=473d9acdadc2969ba2b5c1c55b440fdda5d213e5;
     nixpkgs-wayland.url = github:colemickens/nixpkgs-wayland;
 
     base16-summerfruit-scheme = {
       url = github:cscorley/base16-summerfruit-scheme;
+      flake = false;
+    };
+
+    base16-atelier-schemes = {
+      url = github:atelierbram/base16-atelier-schemes;
       flake = false;
     };
 
@@ -39,7 +44,7 @@
     };
   };
   
-  outputs = { nixpkgs, nix, nur, self, ... } @ inputs: {
+  outputs = { nixpkgs, nix, nur, self, home-manager, ... } @ inputs: {
     nixosConfigurations = with nixpkgs.lib;
       let
         hosts = map 
@@ -51,6 +56,7 @@
             modules = [ 
               (import ./default.nix) 
               { nixpkgs.overlays = [ nur.overlay ]; }
+              # home-manager.nixosModules.home-manager
             ];
             specialArgs = {
               inherit inputs name;

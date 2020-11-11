@@ -15,7 +15,7 @@
         google-chrome = final.google-chrome-beta;
         pipewire = final.pipewire_0_2;
       };
-  })]
+  })];
 
   xdg.portal = {
     enable = true;

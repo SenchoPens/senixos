@@ -14,7 +14,7 @@
     ./applications/packages.nix
     ./applications/alacritty.nix
     ./applications/qutebrowser.nix
-    ./applications/google-chrome-with-pipewire.nix
+    ./applications/google-chrome-with-pipewire
     ./applications/vscode
 
     ./workspace/zsh

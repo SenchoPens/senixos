@@ -16,6 +16,7 @@
         [ps.numpy ps.ptpython ps.sympy]
       ))
       nur.repos.balsoft.pkgs.nix-patch
+      stack
 
       fzf
       ripgrep  # rust grep, fast, use: rg
@@ -37,6 +38,7 @@
       slurp
       lambda-launcher
       xdg_utils
+      # neovim-unwrapped
       # libsForQt5.qtstyleplugins  # did not build :(
 
       tdesktop
@@ -51,6 +53,7 @@
       skypeforlinux
       torbrowser
       discord
-      google-chrome-beta-with-pipewire
+      # google-chrome-beta-with-pipewire
+      teams
     ];
 }
