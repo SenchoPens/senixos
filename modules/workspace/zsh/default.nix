@@ -79,6 +79,7 @@
       alias -s docx='libreoffice'
 
       hash -d hw=~/code/gitlab/SenchoPens/hse-hw
+      alias hw=cd ~hw; HSE
       hash -d mat=~/Documents/hse-materials
       hash -d hse-tex=~/code/github/SenchoPens/my-hse-tex
 
