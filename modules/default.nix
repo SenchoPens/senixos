@@ -9,13 +9,14 @@
     ./applications.nix
 
     ./applications/nvim
+    ./applications/vscode
     ./applications/zathura.nix
+    ./applications/jupyter.nix
     ./applications/firefox.nix
     ./applications/packages.nix
     ./applications/alacritty.nix
     ./applications/qutebrowser.nix
     ./applications/google-chrome-with-pipewire
-    ./applications/vscode
 
     ./workspace/zsh
     ./workspace/sway

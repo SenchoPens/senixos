@@ -13,7 +13,7 @@
       cmake
       gnumake
       (python3.withPackages (ps:
-        [ps.numpy ps.ptpython ps.sympy]
+        [ps.numpy ps.sympy]
       ))
       nur.repos.balsoft.pkgs.nix-patch
       stack
@@ -38,6 +38,8 @@
       slurp
       lambda-launcher
       xdg_utils
+      # python38Packages.jupyterlab  # does not work. Better use nixos option.
+      python38Packages.ptpython
       # neovim-unwrapped
       # libsForQt5.qtstyleplugins  # did not build :(
 
@@ -55,5 +57,6 @@
       discord
       # google-chrome-beta-with-pipewire
       teams
+      obs-studio
     ];
 }

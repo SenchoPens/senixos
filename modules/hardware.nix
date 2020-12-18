@@ -7,10 +7,18 @@ with deviceSpecific; {
 
   hardware.enableRedistributableFirmware = true; # For some unfree drivers
 
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
+ hardware.opengl = {
+   enable = true;
+   driSupport = true;
+   package = pkgs.mesa_drivers;
+   extraPackages = with pkgs; [
+     libGL
+     libGLU
+     freeglut
+   ];
+   setLdLibraryPath = true;
+ };
   # hardware.opengl.driSupport32Bit = true; # For steam
-  hardware.opengl.package = pkgs.mesa_drivers;
 
   hardware.bluetooth.enable = true;
 

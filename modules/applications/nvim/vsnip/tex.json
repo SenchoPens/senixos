@@ -145,5 +145,11 @@
         "body": [
             "\\text{$0}"
         ]
+    },
+    "sqrt": {
+        "prefix": "sq",
+        "body": [
+            "\\sqrt{$0}"
+        ]
     }
 }
