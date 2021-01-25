@@ -13,7 +13,7 @@
       cmake
       gnumake
       (python3.withPackages (ps:
-        [ps.numpy ps.sympy]
+        [ps.numpy ps.sympy ps.ptpython]
       ))
       nur.repos.balsoft.pkgs.nix-patch
       stack
@@ -22,7 +22,6 @@
       ripgrep  # rust grep, fast, use: rg
       zsh-powerlevel10k
       exa
-      gopass  # password manager
 
       cm_unicode  # for latex
       (texlive.combine {
@@ -39,7 +38,6 @@
       lambda-launcher
       xdg_utils
       # python38Packages.jupyterlab  # does not work. Better use nixos option.
-      python38Packages.ptpython
       # neovim-unwrapped
       # libsForQt5.qtstyleplugins  # did not build :(
 
@@ -55,7 +53,7 @@
       skypeforlinux
       torbrowser
       discord
-      # google-chrome-beta-with-pipewire
+      google-chrome-beta-with-pipewire
       teams
       obs-studio
     ];
