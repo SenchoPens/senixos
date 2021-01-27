@@ -8,8 +8,8 @@ in {
   };
   home-manager.users.sencho = {
     programs.firefox = {
-      enable = true;
-      package = pkgs.firefox-wayland;
+      enable = false;
+      package = pkgs.firefox;
     };
   };
 }

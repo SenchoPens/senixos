@@ -6,7 +6,7 @@ let
 
 in {
   nixpkgs.overlays = [
-    inputs.nix.overlay
+    # inputs.nix.overlay
     (self: super: {
       inherit (inputs.lambda-launcher.packages.x86_64-linux) lambda-launcher;
     })
@@ -36,7 +36,8 @@ in {
 
     optimise.automatic = true;
 
-    package = inputs.nix.packages.x86_64-linux.nix;
+    # package = inputs.nix.packages.x86_64-linux.nix;
+    package = pkgs.nixUnstable;
 
     extraOptions = ''
       experimental-features = nix-command flakes

@@ -2,7 +2,7 @@
   description = "Nixos config by Sencho Pens, stolen from balsoft/nixos-config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=master";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     lambda-launcher.url = github:SenchoPens/lambda-launcher;
     NUR.url = github:nix-community/NUR;
     home-manager.url = github:rycee/home-manager?rev=473d9acdadc2969ba2b5c1c55b440fdda5d213e5;
@@ -19,7 +19,8 @@
     };
 
     neovim-unwrapped-nightly = {
-      url = github:neovim/neovim?ref=nightly;
+      # url = github:neovim/neovim?ref=nightly;
+      url = github:neovim/neovim?rev=c6ccdda26ae0b8a9bf4d0779d398cb7c9864aedf;
       flake = false;
     };
 
@@ -44,7 +45,7 @@
     };
   };
   
-  outputs = { nixpkgs, nix, nur, self, home-manager, ... } @ inputs: {
+  outputs = { nixpkgs, nur, self, home-manager, ... } @ inputs: {
     nixosConfigurations = with nixpkgs.lib;
       let
         hosts = map 

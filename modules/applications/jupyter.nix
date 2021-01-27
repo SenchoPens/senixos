@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   services.jupyter = {
-    enable = true;
+    enable = false;
 
     #dunno. does not work. use jupyterWith
     group = "users";

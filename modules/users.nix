@@ -25,7 +25,7 @@
   systemd.services."user@" = { serviceConfig = { Restart = "always"; }; };
 
   # This will allow consoles to automatically log in as sencho
-  # services.mingetty.autologinUser = "sencho";
+  # services.getty.autologinUser = "sencho";
   services.mingetty.helpLine = builtins.readFile ./welcome.ascii_art;
   
   environment.loginShellInit = ''

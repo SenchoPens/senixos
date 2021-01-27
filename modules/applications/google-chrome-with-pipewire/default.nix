@@ -1,14 +1,15 @@
 { config, pkgs, ... }:
 {
-  services.xserver.enable = true; #??
-  services.xserver.displayManager.sddm = {
+  services.xserver = {
     enable = true;
-    autoLogin = {
-      enable = true;
-      user = "sencho";
+    displayManager = {
+      defaultSession = "sway";
+      autoLogin = {
+        enable = true;
+        user = "sencho";
+      };
     };
   };
-  services.xserver.displayManager.defaultSession = "sway";
   nixpkgs.overlays = [(final: prev: {
     google-chrome-beta-with-pipewire =
       prev.callPackage ./google-chrome-with-pipewire.nix {
