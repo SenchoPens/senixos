@@ -24,6 +24,7 @@
     ./workspace/i3blocks
     ./workspace/misc.nix
     ./workspace/mako.nix
+    ./workspace/gnome.nix
     ./workspace/fonts.nix
     ./workspace/interception
     ./workspace/xresources.nix

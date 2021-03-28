@@ -5,8 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     lambda-launcher.url = github:SenchoPens/lambda-launcher;
     NUR.url = github:nix-community/NUR;
-    home-manager.url = github:rycee/home-manager?rev=473d9acdadc2969ba2b5c1c55b440fdda5d213e5;
+    home-manager.url = github:nix-community/home-manager?ref=release-20.09;
     nixpkgs-wayland.url = github:colemickens/nixpkgs-wayland;
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     base16-summerfruit-scheme = {
       url = github:cscorley/base16-summerfruit-scheme;
@@ -56,7 +57,12 @@
             system = "x86_64-linux";
             modules = [ 
               (import ./default.nix) 
-              { nixpkgs.overlays = [ nur.overlay ]; }
+              {
+                nixpkgs.overlays = [
+                  nur.overlay
+                  inputs.neovim-nightly-overlay.overlay
+                ];
+              }
               # home-manager.nixosModules.home-manager
             ];
             specialArgs = {

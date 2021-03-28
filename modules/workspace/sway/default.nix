@@ -16,10 +16,6 @@ let
   defaultFonts = config.fonts.fontconfig.defaultFonts;
 
 in {
-  environment.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
-
-  programs.sway.wrapperFeatures.gtk = true;
-
   programs.sway.extraPackages = lib.mkForce (with pkgs; [ swayidle xwayland ]);
 
   home-manager.users.sencho.wayland.windowManager.sway = {
@@ -258,7 +254,17 @@ in {
 
     wrapperFeatures = {
       gtk = true;
+      base = true;
     };
+
+    # https://discourse.ubuntu.com/t/environment-variables-for-wayland-hackers/12750
+    extraSessionCommands = ''
+      export _JAVA_AWT_WM_NONREPARENTING="1";
+      export XDG_CURRENT_DESKTOP="sway";
+      export XDG_SESSION_TYPE="wayland";
+      export GDK_BACKEND="wayland,x11";
+      export QT_QPA_PLATFROM="wayland-egl";
+    '';
 
     extraConfig = ''
       default_border pixel 1

@@ -8,8 +8,8 @@ in {
   };
   home-manager.users.sencho = {
     programs.firefox = {
-      enable = false;
-      package = pkgs.firefox;
+      enable = false;  # keep until this is fixed: https://github.com/nix-community/home-manager/issues/1641
+      package = pkgs.firefox-wayland;
     };
   };
 }

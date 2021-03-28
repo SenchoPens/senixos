@@ -20,10 +20,11 @@ in {
   };
   home-manager.users.sencho.programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped.overrideAttrs (old: {
-      version = "nightly";
-      src = inputs.neovim-unwrapped-nightly;
-    });
+    # package = pkgs.neovim-unwrapped.overrideAttrs (old: {
+    #   version = "nightly";
+    #   src = inputs.neovim-unwrapped-nightly;
+    # });
+    package = pkgs.neovim-nightly;
 
     vimdiffAlias = true;
     withNodeJs = true;
@@ -71,19 +72,19 @@ in {
         vim.cmd('packadd nvim-lspconfig')
         vim.cmd('packadd completion-nvim')
 
-        local nvim_lsp = require'nvim_lsp'
+        local lspconfig = require'lspconfig'
 
-        nvim_lsp.pyls.setup{
+        lspconfig.pyls.setup{
           settings = {
             pycodestyle = {
               enabled = false;
             }
           }
         }
-        nvim_lsp.bashls.setup{}
-        nvim_lsp.vimls.setup{}
-        nvim_lsp.ccls.setup{}
-        nvim_lsp.texlab.setup{}
+        lspconfig.bashls.setup{}
+        lspconfig.vimls.setup{}
+        lspconfig.ccls.setup{}
+        lspconfig.texlab.setup{}
         EOF
       ''
     ;

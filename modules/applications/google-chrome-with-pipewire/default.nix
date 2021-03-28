@@ -18,11 +18,15 @@
       };
   })];
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
-    gtkUsePortal = true;
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs;
+  #     [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+  #   gtkUsePortal = true;
+  # };
+  # systemd.user.services.xdg-desktop-portal.environment = {
+  #   XDG_DESKTOP_PORTAL_DIR = config.environment.variables.XDG_DESKTOP_PORTAL_DIR;
+  # };
 
   services.pipewire.enable = true;
 }

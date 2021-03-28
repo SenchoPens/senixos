@@ -21,19 +21,25 @@ in {
     fonts = rec {
       fonts = with pkgs; [
         hasklig
-        nerdfonts
+        dejavu_fonts
+        (nerdfonts.override {
+          fonts = [ "DejaVuSansMono" ];
+        })
         material-design-icons
         material-icons
       ];
 
       defaultFont = {
         monospace = genFont "DejaVuSansMono Nerd Font" 13;
-        sansSerif = genFont "DejaVuSans Nerd Font" 13;
-        serif = genFont "DejaVuSerif Nerd Font" 13;
+        sansSerif = genFont "DejaVu Sans" 13;
+        serif = genFont "DejaVu Serif" 13;
       };
 
       fontconfig = {
         enable = true;
+        antialias = true;
+        hinting.enable = true;
+        dpi = 165;
         defaultFonts = with defaultFont; {
           monospace = [ monospace.font ];
           sansSerif = [ sansSerif.font ];

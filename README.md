@@ -1,12 +1,15 @@
 ## Installing it on your machine
-`sudo nixos-rebuild test --flake .`
+```
+sudo nixos-rebuild test --flake .
+sudo ln -s /etc/nixos/ /path/to/this/flake
+```
 
 ## Creating your own secret.nix for better experience
 You can check out the structure of `./secret.nix` in `./modules/secrets.nix`
 
 ## What's in?
 * WM - sway
-* DM - mingetty (console login)
+* DM - getty (console login)
 * Terminal - Alacritty + zsh + powershell10k
 * Editor - neovim
 * Launcher - λauncher 

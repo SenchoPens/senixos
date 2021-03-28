@@ -26,7 +26,7 @@
 
   # This will allow consoles to automatically log in as sencho
   # services.getty.autologinUser = "sencho";
-  services.mingetty.helpLine = builtins.readFile ./welcome.ascii_art;
+  services.getty.helpLine = builtins.readFile ./welcome.ascii_art;
   
   environment.loginShellInit = ''
     [[ "$(tty)" == /dev/tty1 ]] && sway

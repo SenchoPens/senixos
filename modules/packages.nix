@@ -26,7 +26,14 @@ in {
       #"nixpkgs-overlays=/etc/nixos/modules/overlays-compat"  # does not work, most likely because of flakes.
     ];
 
-    binaryCaches = [ "https://cache.nixos.org" ];
+    binaryCachePublicKeys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+
+    binaryCaches = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+    ];
 
     registry.self.flake = inputs.self;
 

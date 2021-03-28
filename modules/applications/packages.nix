@@ -1,12 +1,15 @@
 { pkgs, config, lib, inputs, ... }: {
   home-manager.users.sencho.home.packages = with pkgs;
     [
+      # ToDo: move wayland-specific progs to programs.sway.extraPackages
       wget
       curl
       unrar
       acpi
       light
       htop
+      zip
+      unzip
       psmisc  # killall, pstree, ...
 
       clang
@@ -27,7 +30,7 @@
       (texlive.combine {
         inherit (pkgs.texlive) scheme-small collection-langcyrillic preprint invoice 
         collection-fontsrecommended collection-latexrecommended fontawesome latexmk yfonts
-        gauss;
+        gauss xypic bbm;
       })
 
       wl-clipboard
@@ -38,7 +41,6 @@
       lambda-launcher
       xdg_utils
       # python38Packages.jupyterlab  # does not work. Better use nixos option.
-      # neovim-unwrapped
       # libsForQt5.qtstyleplugins  # did not build :(
 
       tdesktop
@@ -47,14 +49,11 @@
       keepassxc
       libreoffice
       gthumb
-      jetbrains.clion
-      jetbrains.pycharm-community
       zoom-us
       skypeforlinux
-      torbrowser
-      discord
-      google-chrome-beta-with-pipewire
       teams
-      obs-studio
+      firefox-wayland
+      wf-recorder
+      cachix
     ];
 }

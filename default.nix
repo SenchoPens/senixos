@@ -21,7 +21,7 @@ rec {
 
   device = name + "-Laptop";  # ToDo: do this adequately
  
-  system.stateVersion = "20.03";
+  system.stateVersion = "20.09";
 
   networking.hostName = name; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -47,18 +47,6 @@ rec {
     LANG = lib.mkForce "en_GB.UTF-8";
   };
 
-  #services.xserver = {
-    #extraLayouts = {
-      #sencho = {
-        #description = "my xkb layout";
-        #languages = [ "rus" "eng" ];
-        #symbolsFile = ./sencho_xkb;
-      #};
-    #};
-
-    #layout = "sencho";
-    #xkbOptions = "grp:rshift_toggle,grp_led:caps,caps:ctrl_modifier";
-  #};
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home-manager.users.sencho.home.language = let
