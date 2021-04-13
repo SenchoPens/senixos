@@ -1,11 +1,53 @@
 { pkgs, lib, config, ... }:
 let
   thm = config.themes.default.colors;
+  thm' = config.themes.default.colorsRaw;
 
   apps = config.defaultApplications;
 
-  lock_fork = pkgs.writeShellScript "lock_fork" "sudo /run/current-system/sw/bin/lock &";
-  lock = pkgs.writeShellScript "lock" "swaymsg 'output * dpms off'; sudo /run/current-system/sw/bin/lock; swaymsg 'output * dpms on'";
+  fzf-menu  = pkgs.writeShellScript "fzf-menu"  (builtins.readFile ./fzf-menu.sh);
+  # lock      = pkgs.writeShellScript "lock"      "swaymsg 'output * dpms off'; sudo /run/current-system/sw/bin/lock; swaymsg 'output * dpms on'";
+  swaylock-config = pkgs.writeText "swaylock-config" ''
+    ignore-empty-password
+
+    clock
+    timestr=%R
+    datestr=%a, %e of %B
+
+    screenshots
+
+    effect-pixelate=10
+
+    indicator
+    indicator-radius=130
+    indicator-thickness=15
+
+    key-hl-color=${thm'.green}
+
+    separator-color=00000000
+
+    inside-color=${thm'.bg}
+    inside-clear-color=${thm'.bg}
+    inside-ver-color=${thm'.blue}
+    inside-wrong-color=${thm'.red}
+
+    ring-color=${thm'.dark}
+    ring-clear-color=${thm'.dark}
+    ring-ver-color=${thm'.blue}
+    ring-wrong-color=${thm'.red}
+
+    line-color=00000000
+    line-clear-color=00000000
+    line-ver-color=00000000
+    line-wrong-color=00000000
+
+    text-clear-color=${thm'.orange}
+    text-caps-lock-color=${thm'.orange}
+    text-ver-color=${thm'.orange}
+    text-wrong-color=${thm'.orange}
+
+    bs-hl-color=${thm'.red}
+  '';
 
   workspaces = map (x: x + "") [ "10:  " "1:  " "2:  " "3:  " "4:  " "5:  " "6: {}" "7:  " "8:  " "9:  " ];
 
@@ -15,8 +57,10 @@ let
   
   defaultFonts = config.fonts.fontconfig.defaultFonts;
 
+  alacritty = "${pkgs.alacritty}/bin/alacritty";
+
 in {
-  programs.sway.extraPackages = lib.mkForce (with pkgs; [ swayidle xwayland ]);
+  programs.sway.extraPackages = lib.mkForce (with pkgs; [ swayidle xwayland swaylock-effects ]);
 
   home-manager.users.sencho.wayland.windowManager.sway = {
     enable = true;
@@ -31,7 +75,7 @@ in {
 
       fonts = defaultFonts.monospace;
 
-      terminal="${pkgs.alacritty}/bin/alacritty";
+      terminal = alacritty;
 
       input = {
         "*" = { 
@@ -43,15 +87,15 @@ in {
       assigns = let 
         wsAssigns = [
           [  ]
-          [ { app_id = "firefox"; } { class = "qutebrowser"; } { class = "Tor Browser"; } ]
+          [ { app_id = "firefox"; } ]
           [  ]
           [  ]
-          [ { class = "jetbrains-pycharm-ce"; } ]
           [  ]
           [  ]
-          [ { class = "ktorrent"; } { class = "Transmission-gtk"; } ]
-          [ { class = "TelegramDesktop"; } { class = "Keybase"; } { class = "Trello"; } ]
-          [ { class = "smplayer"; } ]
+          [  ]
+          [ { app_id = "transmission-gtk"; } ]
+          [ { app_id = "telegramdesktop"; } ]
+          [  ]
         ]; 
       in lib.genAttrs workspaces (ws: builtins.elemAt wsAssigns (get_ws_n ws));
 
@@ -99,6 +143,10 @@ in {
           {
             command = "sticky enable";
             criteria = { floating = ""; };
+          }
+          {
+            command = "floating enable";
+            criteria = { app_id = "TerminalFloating"; };
           }
         ];
       };
@@ -165,7 +213,8 @@ in {
       })  # makes bindings keyboard layout-agnostic
       ({
         "${modifier}+Shift+q" = "kill";
-        "${modifier}+Return" = "exec ${apps.term.cmd}";
+        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+Shift+Return" = "exec ${terminal} --class 'TerminalFloating'";
         "${modifier}+o" = "layout toggle all";
 
         #"${modifier'}+s" = "echo 'clicked' > /tmp/lol && ${ydotool} click 1";  # left
@@ -204,7 +253,7 @@ in {
         "${modifier}+r" = "mode resize";
         "${modifier}+Shift+f" = "floating toggle";
 
-        "${modifier}+d" = "exec ${pkgs.lambda-launcher}/bin/lambda-launcher";
+        "${modifier}+d" = "exec ${terminal} --class 'TerminalFloating' -e ${fzf-menu}";
 
         "${modifier}+Print" = script "screenshot"
           "${pkgs.grim}/bin/grim Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png";
@@ -227,10 +276,10 @@ in {
         "${modifier}+F5" = "${pkgs.pamixer}/bin/pamixer --allow-boost -t";
         "${modifier}+F6" = "${pkgs.pamixer}/bin/pamixer --allow-boost -d 5";
         "${modifier}+F7" = "${pkgs.pamixer}/bin/pamixer --allow-boost -i 5";
-        "${modifier}+F11" = "exec alacritty -e nmtui";
+        "${modifier}+F11" = "exec ${terminal} --class 'TerminalFloating' -e nmtui";  # -e work with alacritty
         "${modifier}+F12" = "output * dpms on";
 
-        "${modifier}+End" = "exec ${lock}";
+        "${modifier}+End" = "exec ${pkgs.swaylock-effects}/bin/swaylock -C ${swaylock-config}";
 
         "${modifier}+p" = "sticky toggle";
         "${modifier}+b" = "focus mode_toggle";
@@ -271,8 +320,9 @@ in {
       hide_edge_borders --i3 smart
       exec pkill swaynag
       exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
-      exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
+      exec systemctl --user import-environment
     '';
+      # exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
   };
 }
 

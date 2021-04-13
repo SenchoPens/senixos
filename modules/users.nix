@@ -48,8 +48,6 @@
       { 
         users = [ "sencho" ]; runAs = "root";
         commands = map nopasswd_command ([
-          "/run/current-system/sw/bin/lock"
-          "/run/current-system/sw/bin/lock this"
           "${pkgs.light}/bin/light -A 5"
           "${pkgs.light}/bin/light -U 5"
 

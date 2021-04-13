@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   services.jupyter = {
-    enable = false;
+    enable = true;
 
     #dunno. does not work. use jupyterWith
     group = "users";
@@ -16,6 +16,7 @@
             scikitlearn
             scipy
             matplotlib
+            seaborn
           ]));
         in {
           displayName = "Python 3 for machine learning";

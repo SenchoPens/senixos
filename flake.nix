@@ -20,7 +20,6 @@
     };
 
     neovim-unwrapped-nightly = {
-      # url = github:neovim/neovim?ref=nightly;
       url = github:neovim/neovim?rev=c6ccdda26ae0b8a9bf4d0779d398cb7c9864aedf;
       flake = false;
     };
@@ -31,7 +30,8 @@
     };
 
     materia-theme = {
-      url = github:nana-4/materia-theme;
+      # next time updating try to remove rev
+      url = "github:nana-4/materia-theme?rev=6f7e51a97fc7ff3ddbb7908cff505a8c1919b6a2";
       flake = false;
     };
 

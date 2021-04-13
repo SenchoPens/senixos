@@ -3,7 +3,7 @@
   environment.sessionVariables.SHELL = "zsh";
 
   home-manager.users.sencho.programs.zsh = let
-    scripts = import ./scripts pkgs config;
+    hs-scripts = import ./haskell-scripts pkgs config;
   in {
     enable = true;
 
@@ -70,7 +70,7 @@
 
       alias -g Ls="| less"
       alias -g FZF='$(fzf)'
-      alias -g HSE='$(${scripts.hse-dir})'
+      alias -g HSE='$(${hs-scripts.hse-dir})'
 
       alias -s txt=nvim
       alias -s {avi,mkv,mp4}=vlc

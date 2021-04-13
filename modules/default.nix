@@ -18,8 +18,8 @@
     ./applications/qutebrowser.nix
     ./applications/google-chrome-with-pipewire
 
-    ./workspace/zsh
     ./workspace/sway
+    ./workspace/shell
     ./workspace/gtk.nix
     ./workspace/i3blocks
     ./workspace/misc.nix

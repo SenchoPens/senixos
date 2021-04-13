@@ -12,7 +12,8 @@ You can check out the structure of `./secret.nix` in `./modules/secrets.nix`
 * DM - getty (console login)
 * Terminal - Alacritty + zsh + powershell10k
 * Editor - neovim
-* Launcher - λauncher 
+* Launcher - fzf launched in floating terminal (IMHO this is much more UNIX way than any other launchers like rofi etc.)
+* Base16 theme engine and font engine
 
 ## Updating all packages
 ```

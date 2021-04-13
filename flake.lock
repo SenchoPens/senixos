@@ -182,16 +182,17 @@
     "materia-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1616903784,
-        "narHash": "sha256-7XhODX1c9kJOcIG5sWOjYHXsHeqRPInZPO5V8n/8dII=",
+        "lastModified": 1596129804,
+        "narHash": "sha256-Vtyja8A6SfeRA78XK1e89hwWYY0kQm1VkY7/EagDXl8=",
         "owner": "nana-4",
         "repo": "materia-theme",
-        "rev": "93ba661379f2d04c3e66d6e7dae2b917813f080a",
+        "rev": "6f7e51a97fc7ff3ddbb7908cff505a8c1919b6a2",
         "type": "github"
       },
       "original": {
         "owner": "nana-4",
         "repo": "materia-theme",
+        "rev": "6f7e51a97fc7ff3ddbb7908cff505a8c1919b6a2",
         "type": "github"
       }
     },
