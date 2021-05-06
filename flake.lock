@@ -31,6 +31,38 @@
         "type": "github"
       }
     },
+    "base16-black-metal-schemes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1585330710,
+        "narHash": "sha256-ctsMdfUpqVZfqtg4paYg4oCataRHoapxSiYRsi0lwhI=",
+        "owner": "metalelf0",
+        "repo": "base16-black-metal-scheme",
+        "rev": "c7a32bec8105a1ceddb9fcc90b713dabde5e7e5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "metalelf0",
+        "repo": "base16-black-metal-scheme",
+        "type": "github"
+      }
+    },
+    "base16-eva-scheme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1589840056,
+        "narHash": "sha256-+52BPv/3f4vqG+p37XSxyf9w0CPkBSvCo6x1O/JE6Lg=",
+        "owner": "kjakapat",
+        "repo": "base16-eva-scheme",
+        "rev": "595ea6eff814ae462709f222e7af3492ee804e88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kjakapat",
+        "repo": "base16-eva-scheme",
+        "type": "github"
+      }
+    },
     "base16-qutebrowser": {
       "flake": false,
       "locked": {
@@ -383,6 +415,8 @@
       "inputs": {
         "NUR": "NUR",
         "base16-atelier-schemes": "base16-atelier-schemes",
+        "base16-black-metal-schemes": "base16-black-metal-schemes",
+        "base16-eva-scheme": "base16-eva-scheme",
         "base16-qutebrowser": "base16-qutebrowser",
         "base16-summerfruit-scheme": "base16-summerfruit-scheme",
         "home-manager": "home-manager",

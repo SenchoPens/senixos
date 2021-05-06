@@ -20,7 +20,10 @@ with deviceSpecific; {
  };
   # hardware.opengl.driSupport32Bit = true; # For steam
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # boot.kernelModules = [ "ec_sys" ]; # module for thinkpad's leds, view balsoft config for details
 

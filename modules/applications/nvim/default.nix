@@ -38,7 +38,7 @@ in {
       vim-airline
       vim-airline-themes
       limelight-vim
-      vim-smoothie
+      vim-smoothie  # replace when github.com/karb94/neoscroll.nvim is in nixpkgs
 
       vim-polyglot  # syntax highlighting
 
@@ -54,6 +54,8 @@ in {
       vim-vsnip-integ
 
       floobits-neovim
+
+      base16-vim
     ];
 
     extraPython3Packages = (ps: with ps; [

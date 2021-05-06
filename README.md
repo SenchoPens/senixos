@@ -8,7 +8,7 @@ sudo ln -s /etc/nixos/ /path/to/this/flake
 You can check out the structure of `./secret.nix` in `./modules/secrets.nix`
 
 ## What's in?
-* WM - sway
+* WM - sway + swaylock-effects + i3blocks
 * DM - getty (console login)
 * Terminal - Alacritty + zsh + powershell10k
 * Editor - neovim

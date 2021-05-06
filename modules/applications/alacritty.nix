@@ -38,6 +38,18 @@ in {
           magenta = thm.purple;
           white = thm.fg;
         };
+        bright = {
+          black = thm.bg;
+          inherit (thm) red green yellow blue cyan;
+          magenta = thm.purple;
+          white = thm.fg;
+        };
+        dim = {
+          black = thm.bg;
+          inherit (thm) red green yellow blue cyan;
+          magenta = thm.purple;
+          white = thm.fg;
+        };
       };
     };
   };

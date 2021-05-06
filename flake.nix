@@ -19,6 +19,16 @@
       flake = false;
     };
 
+    base16-black-metal-schemes = {
+      url = github:metalelf0/base16-black-metal-scheme;
+      flake = false;
+    };
+
+    base16-eva-scheme = {
+      url = github:kjakapat/base16-eva-scheme;
+      flake = false;
+    };
+
     neovim-unwrapped-nightly = {
       url = github:neovim/neovim?rev=c6ccdda26ae0b8a9bf4d0779d398cb7c9864aedf;
       flake = false;

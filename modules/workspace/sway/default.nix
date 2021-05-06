@@ -43,8 +43,8 @@ let
 
     text-clear-color=${thm'.orange}
     text-caps-lock-color=${thm'.orange}
-    text-ver-color=${thm'.orange}
-    text-wrong-color=${thm'.orange}
+    text-ver-color=${thm'.bg}
+    text-wrong-color=${thm'.bg}
 
     bs-hl-color=${thm'.red}
   '';
@@ -276,7 +276,9 @@ in {
         "${modifier}+F5" = "${pkgs.pamixer}/bin/pamixer --allow-boost -t";
         "${modifier}+F6" = "${pkgs.pamixer}/bin/pamixer --allow-boost -d 5";
         "${modifier}+F7" = "${pkgs.pamixer}/bin/pamixer --allow-boost -i 5";
-        "${modifier}+F11" = "exec ${terminal} --class 'TerminalFloating' -e nmtui";  # -e work with alacritty
+        # \/ -o works only with alacritty, blue is the color nmtui uses for background \/
+        "${modifier}+F11" = ''exec ${terminal} --class 'TerminalFloating' -o "colors.normal.blue='${thm.dark}'" -e nmtui'';
+        "${modifier}+Shift+F11" = ''exec ${terminal} --class 'TerminalFloating' -e bluetoothctl'';
         "${modifier}+F12" = "output * dpms on";
 
         "${modifier}+End" = "exec ${pkgs.swaylock-effects}/bin/swaylock -C ${swaylock-config}";
