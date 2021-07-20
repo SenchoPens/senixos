@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  services.gnome3 = {
+  services.gnome = {
     gnome-settings-daemon.enable = true;
   };
 }

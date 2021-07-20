@@ -1,7 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 let
-  thm = config.themes.default.colors;
-  thm' = config.themes.default.colorsRaw;
+  # base16-scheme = inputs.base16-utils.lib.x86_64-linux.getSchemeFromYAMLPath "${inputs.base16-black-metal-schemes}/black-metal-burzum.yaml";
+  thm = config.base16.schemes.dark.namedHashtag;
+  thm' = config.base16.schemes.dark.named;
 
   apps = config.defaultApplications;
 
@@ -55,8 +56,6 @@ let
   get_ws_n = with lib; with builtins;
     ws: trivial.mod (toInt (elemAt (split ":" ws) 0)) 10;
   
-  defaultFonts = config.fonts.fontconfig.defaultFonts;
-
   alacritty = "${pkgs.alacritty}/bin/alacritty";
 
 in {
@@ -73,7 +72,10 @@ in {
       focus.followMouse = false;
       focus.forceWrapping = true;
 
-      fonts = defaultFonts.monospace;
+      fonts = {
+        names = [ config.fonts.defaultFont.monospace.fontName ];
+        size = config.fonts.defaultFont.monospace.fontSize + 0.0;
+      };
 
       terminal = alacritty;
 
@@ -175,7 +177,7 @@ in {
           # see ../i3blocks for i3block configuration
           statusCommand = "${pkgs.i3blocks}/bin/i3blocks";
 
-          fonts = defaultFonts.monospace;
+          inherit fonts;
           mode = "dock";
           position = "bottom";
 
@@ -212,7 +214,7 @@ in {
         inherit value;
       })  # makes bindings keyboard layout-agnostic
       ({
-        "${modifier}+Shift+q" = "kill";
+        "${modifier}+q" = "kill";
         "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+Return" = "exec ${terminal} --class 'TerminalFloating'";
         "${modifier}+o" = "layout toggle all";
@@ -326,5 +328,6 @@ in {
     '';
       # exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
   };
+  programs.sway.enable = true;
 }
 

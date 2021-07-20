@@ -13,15 +13,17 @@
 rec {
   imports = [
     (./hardware-configuration + "/${name}.nix")
-
-    inputs.home-manager.nixosModules.home-manager
-
     (import ./modules)
   ];
 
   device = name + "-Laptop";  # ToDo: do this adequately
  
   system.stateVersion = "20.09";
+  home-manager.users.sencho.home = {
+    username = "sencho";
+    homeDirectory = "/home/sencho";
+    stateVersion = "20.09";
+  };
 
   networking.hostName = name; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -34,7 +36,7 @@ rec {
   networking.interfaces.enp1s0.useDHCP = true;
   networking.interfaces.wlp2s0.useDHCP = true;
 
-  # Set your time zone.
+  # Set time zone.
   time.timeZone = "Europe/Moscow";
 
   # Enable sound.
@@ -47,6 +49,7 @@ rec {
     LANG = lib.mkForce "en_GB.UTF-8";
   };
 
+  # Make 'nixpkgs' an alias to 'github:nixos/nixpkgs?...'
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home-manager.users.sencho.home.language = let

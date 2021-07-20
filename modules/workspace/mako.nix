@@ -1,6 +1,8 @@
 { pkgs, config, ...}:
 {
-  home-manager.users.sencho.programs.mako = {
+  home-manager.users.sencho.programs.mako = let
+    thm = config.base16.schemes.default.namedHashtag;
+  in {
     enable = true;
     layer = "overlay";
     font = builtins.elemAt config.fonts.fontconfig.defaultFonts.serif 0;
@@ -8,9 +10,9 @@
     height = 80;
     defaultTimeout = 10000;
     maxVisible = 10;
-    backgroundColor = config.themes.light.colors.bg;
-    textColor = config.themes.light.colors.fg;
-    borderColor = config.themes.light.colors.blue;
-    progressColor = "over ${config.themes.light.colors.green}";
+    backgroundColor = thm.bg;
+    textColor = thm.fg;
+    borderColor = thm.blue;
+    progressColor = "over ${thm.green}";
   };
 }

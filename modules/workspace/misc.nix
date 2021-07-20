@@ -1,6 +1,4 @@
 { pkgs, lib, config, inputs, ... }: {
-  programs.sway.enable = true;
-
   users.users.sencho.extraGroups = [ "sway" ];
 
   systemd.coredump.enable = true;

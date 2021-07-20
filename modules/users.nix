@@ -31,7 +31,7 @@
   environment.loginShellInit = ''
     [[ "$(tty)" == /dev/tty1 ]] && sway
   '';
-  console.colors = config.themes.default.colorList;
+  console.colors = config.base16.schemes.default.listed;
   console.font = "Lat2-Terminus18";
   # console.font = "cyr-sun16";
   # console.keyMap = "ruwin_cplk-UTF-8";

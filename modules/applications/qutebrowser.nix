@@ -1,6 +1,6 @@
 { config, pkgs, home-manager, inputs, ... }:
 let
-  thm = config.themes.dark.originalTheme;
+  # thm = config.base16.schemes.dark.originalTheme;
 in {
   home-manager.users.sencho.programs.qutebrowser = {
     enable = true;
@@ -20,12 +20,12 @@ in {
       
     };
 
-    extraConfig = with pkgs.lib; let
-      thm' = thm // {base00 = thm.base01; };
-    in
-      builtins.replaceStrings
-        (mapAttrsToList (x: _: "{{${x}-hex}}") thm) 
-        (mapAttrsToList (_: x: x) thm')
-        (builtins.readFile "${inputs.base16-qutebrowser}/templates/default.mustache");
+#     extraConfig = with pkgs.lib; let
+#       thm' = thm // {base00 = thm.base01; };
+#     in
+#       builtins.replaceStrings
+#         (mapAttrsToList (x: _: "{{${x}-hex}}") thm) 
+#         (mapAttrsToList (_: x: x) thm')
+#         (builtins.readFile "${inputs.base16-qutebrowser}/templates/default.mustache");
   };
 }

@@ -94,6 +94,10 @@ set wildmode=longest:list,full
 " Remove blank line below statusline
 set cmdheight=1
 
+" Close each time Return is used in the quickfix or location list windows
+" This is NOT for NetRW, for it a plugin is needed
+autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>
+
 """"" PLUGINS """""
 
 " airline

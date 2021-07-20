@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
-let thm = config.themes.default.colors;
+let thm = config.base16.schemes.default.namedHashtag;
 in {
   home-manager.users.sencho.programs.alacritty = {
     enable = true;

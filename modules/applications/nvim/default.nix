@@ -3,7 +3,8 @@ let
   thm = config.themes.default;
 in {
   home-manager.users.sencho.home.packages = with pkgs; [
-    python38Packages.python-language-server
+    # python38Packages.python-language-server
+    pkgs.unstable.python39Packages.python-lsp-server
     nodePackages.bash-language-server
     nodePackages.vim-language-server
     gopls
@@ -20,29 +21,37 @@ in {
   };
   home-manager.users.sencho.programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-unwrapped.overrideAttrs (old: {
-    #   version = "nightly";
-    #   src = inputs.neovim-unwrapped-nightly;
-    # });
-    package = pkgs.neovim-nightly;
+    package = pkgs.unstable.neovim-unwrapped;  # Udpate when neovim in 21.05 reaches 0.5
 
     vimdiffAlias = true;
     withNodeJs = true;
-    withPython = true;
     withPython3 = true;
     withRuby = true;
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.unstable.vimPlugins; [
       vim-gitgutter
 
       vim-airline
       vim-airline-themes
+
+      # github.com/kyazdani42/nvim-tree.lua
+      nvim-tree-lua
+
       limelight-vim
+
       vim-smoothie  # replace when github.com/karb94/neoscroll.nvim is in nixpkgs
 
       vim-polyglot  # syntax highlighting
 
-      vim-commentary  # gc to comment visual selection, gcc to comment line
+      # github.com/tpope/vim-commentary
+      # gc to comment visual selection, gcc to comment line
+      vim-commentary
+
+      # github.com/tpope/vim-abolish
+      # crs (coerce to snake_case). MixedCase (crm), camelCase (crc), snake_case (crs), UPPER_CASE (cru)
+      # dash-case (cr-), dot.case (cr.), space case (cr<space>), and Title Case (crt)
+      # Also provides powerful substitution commands
+      vim-abolish
 
       vimtex
 
@@ -53,14 +62,14 @@ in {
       vim-vsnip
       vim-vsnip-integ
 
-      floobits-neovim
-
       base16-vim
     ];
 
-    extraPython3Packages = (ps: with ps; [
-      python-language-server  # pyls looks up the system interpreter :(
-    ]);
+    # not working ? check
+    # Maybe it is only for usage in python plugins as libraries, not for LSP
+    # extraPython3Packages = (ps: with ps; [
+    #   python-lsp-server  # pylsp looks up the system interpreter :(  - recheck
+    # ]);
 
     extraConfig = 
       (builtins.readFile ./init.vim)
@@ -69,27 +78,14 @@ in {
         let g:vsnip_snippet_dir = "${./vsnip}"
       ''
       +
+      # Commented does not work:
+      # lua require('init')
+      # Replace when home-manager supports lua neovim config
       ''
-        lua <<EOF
-        vim.cmd('packadd nvim-lspconfig')
-        vim.cmd('packadd completion-nvim')
-
-        local lspconfig = require'lspconfig'
-
-        lspconfig.pyls.setup{
-          settings = {
-            pycodestyle = {
-              enabled = false;
-            }
-          }
-        }
-        lspconfig.bashls.setup{}
-        lspconfig.vimls.setup{}
-        lspconfig.ccls.setup{}
-        lspconfig.texlab.setup{}
+        lua << EOF
+        ${builtins.readFile ./lua/init.lua}
         EOF
       ''
     ;
   };
 }
-

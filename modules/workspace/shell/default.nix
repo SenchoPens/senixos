@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, inputs, ... }: {
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.SHELL = "zsh";
 
@@ -42,27 +42,19 @@
       {
         name = "enhancd";
         file = "init.sh";
-        src = pkgs.fetchFromGitHub {
-          owner = "b4b4r07";
-          repo = "enhancd";
-          rev = "v2.2.4";
-          #sha256 = "e30b7729b10806adbe41f0b7de5d9c51232986d0463fef92986dfb62f17f9892";
-          #sha256 = "sha256-4wt3KbEIBq2+QfC33l2cUSMphtBGP++SmG37YvF/mJI=";
-          sha256 = "sha256-9/JGJgfAjXLIioCo3gtzCXJdcmECy6s59Oj0uVOfuuo=";
-        };
+        src = inputs.enhancd;
       }
       {
         name = "zsh-syntax-highlighting";
         file = "zsh-syntax-highlighting.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "0.7.0";
-          #sha256 = "f5044266ee198468b1bcec881a56e6399e209657d6ed9fa6d21175bc76afdefa";
-          sha256 = "sha256-eRTk0o35QbPB9kOIV0iDwd0j5P/yewFFISVS/iEfP2g=";
-        };
+        src = inputs.zsh-syntax-highlighting;
       }
     ];
+
+    localVariables = {
+      ENHANCD_FILTER = "${pkgs.fzf}/bin/fzf";
+      ENHANCD_DISABLE_DOT = 1;
+    };
 
     initExtra = 
       ''
@@ -98,8 +90,8 @@
   };
 
   home-manager.users.sencho.programs.direnv = {
+    nix-direnv.enable = true;
     enable = true;
-    enableNixDirenvIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = false;
   };

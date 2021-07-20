@@ -1,4 +1,4 @@
-{ makeWrapper, stdenv, google-chrome, pipewire }:
+{ makeWrapper, stdenv, lib, google-chrome, pipewire }:
 
 with builtins;
 
@@ -15,7 +15,7 @@ in stdenv.mkDerivation {
     makeWrapper \
       "${google-chrome}/bin/${binName}" \
       $out/bin/${binName} \
-      --prefix LD_LIBRARY_PATH : ${stdenv.lib.makeLibraryPath [ pipewire ]} \
+      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pipewire ]} \
       --add-flags '--enable-features=WebRTCPipeWireCapturer'
   '';
 }

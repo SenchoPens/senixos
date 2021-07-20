@@ -30,6 +30,11 @@
 
   systemd.services.NetworkManager-wait-online.enable = false;  # slows boot by 6-9s
 
-  virtualisation.docker.enable = config.deviceSpecific.isHost;
-  virtualisation.docker.enableOnBoot = false;  # slows boot by 2s
+  virtualisation.docker = {
+    enable = config.deviceSpecific.isHost;
+    enableOnBoot = false;  # slows boot by 2s
+    # 'docker' group is root equivalent, so maybe better not to add myself to it,
+    # but on the other hand I AM root :/
+    # https://github.com/moby/moby/issues/9976
+  };
 }

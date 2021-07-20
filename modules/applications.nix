@@ -5,24 +5,30 @@ with import ../support.nix { inherit lib config; }; {
     description = "Preferred applications";
   };
   config = rec {
-    defaultApplications = {
-      term = {
-        cmd = "${pkgs.alacritty}/bin/alacritty";
-        desktop = "alacritty";
+    defaultApplications =
+      let
+        openInTerminal = bin: pkgs.writeShellScriptBin "${bin}-in-terminal"
+          ''
+          ${pkgs.alacritty}/bin/alacritty -e "${bin} $1"
+          '';
+      in {
+        term = {
+          cmd = "${pkgs.alacritty}/bin/alacritty";
+          desktop = "alacritty";
+        };
+        editor = {
+          cmd = openInTerminal "${pkgs.neovim}/bin/nvim";
+          desktop = "nvim-terminal";  # TODO: Create desktop entry
+        };
+        browser = {
+          cmd = "${pkgs.firefox-wayland}/bin/firefox";
+          desktop = "firefox";
+        };
+        pdfViewer = {
+          cmd = "${pkgs.zathura}/bin/zathura";
+          desktop = "org.pwmt.zathura";
+        };
       };
-      editor = {
-        cmd = "${pkgs.neovim}/bin/nvim";
-        desktop = "nvim";
-      };
-      browser = {
-        cmd = "${pkgs.firefox-wayland}/bin/firefox";
-        desktop = "firefox";
-      };
-      pdfViewer = {
-        cmd = "${pkgs.zathura}/bin/zathura";
-        desktop = "org.pwmt.zathura";
-      };
-    };
     home-manager.users.sencho.xdg.configFile."mimeapps.list".force = true;
     home-manager.users.sencho.xdg.mimeApps = {
       enable = true;

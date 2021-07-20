@@ -17,6 +17,7 @@
             scipy
             matplotlib
             seaborn
+            scikitimage
           ]));
         in {
           displayName = "Python 3 for machine learning";
